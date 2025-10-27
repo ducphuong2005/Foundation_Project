@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Đăng ký - HahaBook</title>
+  <!-- Google Fonts + Remix Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      /* Header colors */
+      --blue-top:#75a6f0;
+      --gray-border:#ddd;
+      --gray-text:#555;
+
+      /* Page / card */
+      --bg1:#00c9ff; --bg2:#92fe9d; --bg3:#fbc2eb; --bg4:#a6c1ee;
+      --card-bg: rgba(20, 20, 30, 0.55);
+      --card-border: rgba(255,255,255,0.2);
+      --text:#ffffff; --muted:#c9c9d1; --accent:#22c55e; --accent-2:#60a5fa;
+      --danger:#ef4444;
+      --blur:14px; --radius:18px; --shadow:0 20px 40px rgba(0,0,0,.35);
+      --focus:0 0 0 4px rgba(96,165,250,.25);
+      --brand:#ff6600;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    /* ===== Page layout (giống login) ===== */
+    body{
+      font-family:"Poppins",sans-serif;
+      display:flex; flex-direction:column; min-height:100vh;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+      background-size:400% 400%;
+      animation:gradientShift 18s ease infinite;
+      color:inherit;
+    }
+    @keyframes gradientShift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* ===== Header (y hệt login) ===== */
+    .header-topbar{
+      background:var(--blue-top); color:#fff; font-size:.95rem;
+      padding:6px 100px; display:flex; justify-content:space-between; align-items:center;
+    }
+    .header-topbar .left{display:flex; align-items:center; gap:24px; flex-wrap:wrap}
+    .header-topbar i{margin-right:6px}
+    .header-topbar a{color:#fff; text-decoration:none; opacity:.95}
+    .header-topbar a:hover{opacity:1}
+    .header-topbar .right a{color:#fff; margin-left:12px; text-decoration:none; font-weight:500}
+
+    .header-main{
+      background:#fff; border-bottom:1px solid var(--gray-border);
+      padding:18px 100px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
+    }
+    .logo{font-size:32px; font-weight:700; color:var(--blue-top)}
+    .logo span{color:var(--brand)}
+    .search{display:flex; align-items:center; gap:8px; width:600px; max-width:100%}
+    .search input{flex:1; padding:8px 12px; border:1px solid #ccc; border-radius:4px; outline:none}
+    .search button{padding:8px 14px; background:#000; color:#fff; border:none; border-radius:4px; cursor:pointer}
+    .support{color:#333; text-align:right; font-size:.95rem}
+    .support i{margin-right:6px} .support strong{color:#d00}
+
+    .breadcrumbs{
+      background:#f5f5f5; color:var(--gray-text); padding:8px 100px; font-size:.95rem; border-bottom:1px solid #eee;
+    }
+    .breadcrumbs a{color:var(--gray-text); text-decoration:none}
+    .breadcrumbs a:hover{text-decoration:underline}
+
+    /* ===== Main content wrapper (giống login) ===== */
+    .page-main{
+      flex:1; display:flex; justify-content:center; align-items:center; padding:40px 16px;
+    }
+
+    /* ===== Register card ===== */
+    .card{
+      width:100%; max-width:480px; background:var(--card-bg);
+      border:1px solid var(--card-border); border-radius:var(--radius);
+      box-shadow:var(--shadow); backdrop-filter:blur(var(--blur));
+      overflow:hidden; transform:translateY(10px); opacity:0; animation:cardIn .8s ease forwards; color:#fff;
+    }
+    @keyframes cardIn{to{opacity:1; transform:translateY(0)}}
+    .card__title{font-size:1.5rem; font-weight:600; text-align:center; margin:26px 0 8px}
+    .card__subtitle{text-align:center; color:var(--muted); font-size:.95rem; margin-bottom:6px}
+    form{padding:18px 28px 30px}
+
+    .field{position:relative; margin-top:18px}
+    .field__wrap{
+      display:flex; align-items:center; gap:10px; padding:14px 14px 10px;
+      background:rgba(255,255,255,.04); border:1px solid var(--card-border);
+      border-radius:14px; transition:.25s;
+    }
+    .field__wrap:focus-within{border-color:rgba(255,255,255,.5); box-shadow:var(--focus); background:rgba(255,255,255,.06)}
+    .field__icon{font-size:1.2rem; color:var(--muted)}
+    .field__box{flex:1; position:relative}
+    .field__input{width:100%; background:transparent; border:none; outline:none; color:#fff; font-size:1rem; height:26px; padding:0}
+    .field__label{position:absolute; left:0; top:-2px; font-size:.85rem; color:var(--muted); transition:transform .2s ease, opacity .2s ease; transform-origin:left}
+    .field__input:placeholder-shown + .field__label{transform:translateY(8px) scale(1.02); opacity:.85}
+    .field__input:not(:placeholder-shown)+.field__label, .field__input:focus+.field__label{transform:translateY(-12px) scale(.88); opacity:.95}
+
+    /* Eye button */
+    .eye{
+      background:transparent!important; border:0!important; padding:6px; margin:-6px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius:10px; cursor:pointer; color:var(--muted); -webkit-appearance:none; appearance:none; transition:.2s;
+    }
+    .eye:hover{color:#fff} .eye i{pointer-events:none} button.eye::-moz-focus-inner{border:0; padding:0}
+
+    .row{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:14px}
+    .checkbox{display:flex; align-items:center; gap:8px; color:var(--muted); font-size:.93rem; cursor:pointer}
+    .checkbox input{width:18px; height:18px; accent-color:var(--accent-2)}
+
+    .btn{
+      margin-top:20px; width:100%; border:none; cursor:pointer;
+      border-radius:14px; padding:14px 16px; font-weight:600; font-size:1rem;
+      background:linear-gradient(90deg,var(--accent-2),#7dd3fc,var(--accent));
+      color:#0b1220; transition:transform .05s ease, filter .2s ease;
+    }
+    .btn:hover{filter:brightness(1.05)} .btn:active{transform:translateY(1px)}
+    .error{margin-top:8px; color:var(--danger); font-size:.9rem; display:none}
+    .help{margin-top:14px; text-align:center; color:var(--muted); font-size:.92rem}
+
+    .strength{margin-top:10px; height:8px; background:rgba(255,255,255,.08); border-radius:8px; overflow:hidden}
+    .strength__bar{height:100%; width:0%; background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#22d3ee); transition:width .3s ease}
+
+    .card__logo-bottom{display:block; margin:26px auto 10px; max-width:160px; height:auto; opacity:.9; transition:opacity .3s}
+    .card__logo-bottom:hover{opacity:1}
+
+    /* Responsive giống login */
+    @media (max-width:768px){
+      .header-topbar{padding:6px 16px}
+      .header-main{padding:16px}
+      .breadcrumbs{padding:8px 16px}
+      .search{width:100%}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER (giống login) ===== -->
+  <div class="header-topbar">
+    <div class="left">
+      <a href="#"><i class="ri-phone-fill"></i>0123 456 789</a>
+      <a href="#"><i class="ri-mail-fill"></i>contact@hahabook.com</a>
+      <a href="#"><i class="ri-map-pin-2-fill"></i>36 Minh Khai, Cầu Diễn, TP Hà Nội</a>
+    </div>
+    <div class="right">
+      <a href="#">TÀI KHOẢN</a>
+      <a href="#">ĐĂNG XUẤT</a>
+    </div>
+  </div>
+
+  <div class="header-main">
+    <div class="logo">HahaBook<span>.com</span></div>
+    <div class="search">
+      <input type="text" placeholder="Tìm kiếm sản phẩm...">
+      <button>Tìm kiếm</button>
+    </div>
+    <div class="support"><i class="ri-headphone-line"></i>Tư vấn khách hàng: <strong>0987 654 321</strong></div>
+  </div>
+
+  <div class="breadcrumbs">
+    <a href="#">Trang chủ</a> | <span>Đăng ký</span>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <main class="page-main">
+    <section class="card">
+      <div class="card__title">Tạo tài khoản</div>
+      <form id="registerForm" novalidate>
+        <!-- Họ tên -->
+        <div class="field">
+          <div class="field__wrap">
+            <i class="ri-user-line field__icon"></i>
+            <div class="field__box">
+              <input id="name" type="text" class="field__input" placeholder=" " required minlength="2" />
+              <label for="name" class="field__label">Họ và tên</label>
+            </div>
+          </div>
+          <div id="nameErr" class="error">Vui lòng nhập họ tên (≥ 2 ký tự).</div>
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <div class="field__wrap">
+            <i class="ri-mail-line field__icon"></i>
+            <div class="field__box">
+              <input id="email" type="email" class="field__input" placeholder=" " required />
+              <label for="email" class="field__label">Email</label>
+            </div>
+          </div>
+          <div id="emailErr" class="error">Email chưa hợp lệ.</div>
+        </div>
+
+        <!-- Mật khẩu -->
+        <div class="field">
+          <div class="field__wrap">
+            <i class="ri-lock-2-line field__icon"></i>
+            <div class="field__box">
+              <input id="password" type="password" class="field__input" placeholder=" " required minlength="6" />
+              <label for="password" class="field__label">Mật khẩu</label>
+            </div>
+            <button type="button" class="eye" id="togglePass"><i class="ri-eye-off-line" id="eyeIcon1"></i></button>
+          </div>
+          <div class="strength" aria-hidden="true"><div class="strength__bar" id="strengthBar"></div></div>
+          <div id="passErr" class="error">Mật khẩu tối thiểu 6 ký tự, nên có chữ hoa, số và ký tự đặc biệt.</div>
+        </div>
+
+        <!-- Xác nhận mật khẩu -->
+        <div class="field">
+          <div class="field__wrap">
+            <i class="ri-shield-keyhole-line field__icon"></i>
+            <div class="field__box">
+              <input id="confirm" type="password" class="field__input" placeholder=" " required />
+              <label for="confirm" class="field__label">Xác nhận mật khẩu</label>
+            </div>
+            <button type="button" class="eye" id="toggleConfirm"><i class="ri-eye-off-line" id="eyeIcon2"></i></button>
+          </div>
+          <div id="confirmErr" class="error">Mật khẩu nhập lại chưa khớp.</div>
+        </div>
+
+        <!-- Điều khoản -->
+        <div class="row" style="margin-top:16px">
+          <label class="checkbox"><input id="agree" type="checkbox" /> Tôi đồng ý với <a href="policies.html" style="color:#fff; text-decoration:underline; margin-left:6px">Điều khoản</a></label>
+        </div>
+        <div id="agreeErr" class="error">Bạn cần đồng ý với Điều khoản.</div>
+
+        <button class="btn" type="submit"><i class="ri-user-add-line" style="margin-right:6px"></i> Đăng ký</button>
+        <p class="help">Đã có tài khoản? <a href="login.html" style="color:#fff; text-decoration:underline">Đăng nhập</a></p>
+
+        <img src="logo.png" alt="Logo" class="card__logo-bottom" onerror="this.style.display='none'">
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Eye toggles
+    [{btn:'togglePass', input:'password', icon:'eyeIcon1'},
+     {btn:'toggleConfirm', input:'confirm',  icon:'eyeIcon2'}]
+    .forEach(({btn,input,icon})=>{
+      const b=document.getElementById(btn), i=document.getElementById(icon), inp=document.getElementById(input);
+      b.addEventListener('click', ()=>{ const hide=inp.type==='password'; inp.type=hide?'text':'password'; i.className=hide?'ri-eye-line':'ri-eye-off-line'; inp.focus(); });
+    });
+
+    // Strength meter
+    const pwd=document.getElementById('password'), bar=document.getElementById('strengthBar');
+    const score=v=>Math.min((v.length>=6)+( /[A-Z]/.test(v) )+( /[0-9]/.test(v) )+( /[^A-Za-z0-9]/.test(v) )+(v.length>=12),4);
+    pwd.addEventListener('input',()=>{ bar.style.width=[0,25,50,75,100][score(pwd.value)]+'%'; });
+
+    // Validate (demo)
+    const form=document.getElementById('registerForm');
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const nameI=document.getElementById('name'), emailI=document.getElementById('email'), confirmI=document.getElementById('confirm'), agree=document.getElementById('agree');
+      const nameErr=document.getElementById('nameErr'), emailErr=document.getElementById('emailErr'), passErr=document.getElementById('passErr'), confirmErr=document.getElementById('confirmErr'), agreeErr=document.getElementById('agreeErr');
+      [nameErr,emailErr,passErr,confirmErr,agreeErr].forEach(el=>el.style.display='none');
+      let ok=true;
+      if(!nameI.value || nameI.value.trim().length<2){nameErr.style.display='block'; ok=false;}
+      if(!/^\S+@\S+\.\S+$/.test(emailI.value)){emailErr.style.display='block'; ok=false;}
+      if(pwd.value.length<6){passErr.style.display='block'; ok=false;}
+      if(pwd.value!==confirmI.value){confirmErr.style.display='block'; ok=false;}
+      if(!agree.checked){agreeErr.style.display='block'; ok=false;}
+      if(ok){ alert('Đăng ký thành công (demo)!'); form.reset(); bar.style.width='0%'; }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Overview Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+  <div class="sidebar">
+    <div>
+        <img src="../logo3.png" height="45px" >
+    </div>
+    <div class="logo" >
+       
+    </div>
+    <ul class="menu">
+      <li class="active"><i class="fa fa-chart-bar"></i> Dashboard</li>
+      <li><i class="fa fa-chart-line"></i> Analytics</li>
+      <li><i class="fa fa-lightbulb"></i> Insights</li>
+      <li><i class="fa fa-users"></i> Customers</li>
+      <li><i class="fa fa-store"></i> Store</li>
+      <li><i class="fa fa-tag"></i> Discounts</li>
+      <li><i class="fa fa-cogs"></i> Integration</li>
+      <li><i class="fa fa-comment"></i> Feedback</li>
+      <li><i class="fa fa-gear"></i> Settings</li>
+      <li><i class="fa fa-circle-question"></i> Help Desk</li>
+      <li class="logout"><i class="fa fa-right-from-bracket"></i> Log out</li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <header>
+      <h1>Sales Overview</h1>
+      <input type="date" id="dateRange">
+    </header>
+
+    <section class="cards">
+      <div class="card">
+        <h3>Total Sales</h3>
+        <p class="value">2500</p>
+        <small>Last month: 2345 <span class="green">+4.9%</span></small>
+      </div>
+      <div class="card">
+        <h3>New Customers</h3>
+        <p class="value">110</p>
+        <small>Last month: 89 <span class="red">-7.5%</span></small>
+      </div>
+      <div class="card">
+        <h3>Return Products</h3>
+        <p class="value">72</p>
+        <small>Last month: 60 <span class="red">-6.0%</span></small>
+      </div>
+      <div class="card">
+        <h3>Total Revenue</h3>
+        <p class="value">$8,220.64</p>
+        <small>Last month: $620.00</small>
+      </div>
+    </section>
+
+    <section class="charts">
+      <div class="chart-card">
+        <h3>Revenue Analytics</h3>
+        <canvas id="revenueChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Total Income</h3>
+        <canvas id="incomeChart"></canvas>
+      </div>
+    </section>
+
+    <section class="orders">
+      <h3>Recent Orders</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Items</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="orderTable"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

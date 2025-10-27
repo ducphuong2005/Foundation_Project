@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Đăng nhập - HahaBook</title>
+
+  <!-- Google Fonts + Remix Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      --blue-top:#75a6f0;
+      --gray-border:#ddd;
+      --gray-text:#555;
+      --accent:#ff6600;
+      --bg1:#00c9ff; --bg2:#92fe9d; --bg3:#fbc2eb; --bg4:#a6c1ee;
+      --card-bg: rgba(20, 20, 30, 0.55);
+      --card-border: rgba(255,255,255,0.2);
+      --blur:14px; --radius:18px; --shadow:0 20px 40px rgba(0,0,0,.35);
+      --focus:0 0 0 4px rgba(96,165,250,.25);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:"Poppins",sans-serif;
+      display:flex; flex-direction:column; min-height:100vh;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+      background-size:400% 400%;
+      animation:gradientShift 18s ease infinite;
+    }
+    @keyframes gradientShift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* ================= HEADER ================= */
+    .header-topbar{
+      background:var(--blue-top);
+      color:#fff;
+      font-size:.95rem;
+      padding:6px 100px;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .header-topbar .left{
+      display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+    }
+    .header-topbar i{margin-right:6px;}
+    .header-topbar a{color:#fff; text-decoration:none; opacity:.95}
+    .header-topbar a:hover{opacity:1}
+    .header-topbar .right a{color:#fff; margin-left:12px; text-decoration:none; font-weight:500}
+
+    .header-main{
+      background:#fff; border-bottom:1px solid var(--gray-border);
+      padding:18px 100px;
+      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
+    }
+    .logo{font-size:32px; font-weight:700; color:var(--blue-top)}
+    .logo span{color:var(--accent)}
+
+    .search{display:flex; align-items:center; gap:8px; width:600px; max-width:100%}
+    .search input{
+      flex:1; padding:8px 12px;
+      border:1px solid #ccc; border-radius:4px; outline:none;
+    }
+    .search button{
+      padding:8px 14px; background:#000; color:#fff; border:none;
+      border-radius:4px; cursor:pointer;
+    }
+
+    .support{color:#333; text-align:right; font-size:.95rem;}
+    .support i{margin-right:6px}
+    .support strong{color:#d00}
+
+    /* Breadcrumb */
+    .breadcrumbs{
+      background:#f5f5f5; color:var(--gray-text);
+      padding:8px 100px; font-size:.95rem;
+      border-bottom:1px solid #eee;
+    }
+    .breadcrumbs a{color:var(--gray-text); text-decoration:none;}
+    .breadcrumbs a:hover{text-decoration:underline;}
+
+    /* =============== MAIN LOGIN FORM =============== */
+    .page-main{
+      flex:1;
+      display:flex; justify-content:center; align-items:center;
+      padding:40px 16px;
+    }
+    .card{
+      width:100%; max-width:420px;
+      background:var(--card-bg);
+      border:1px solid var(--card-border);
+      border-radius:var(--radius);
+      backdrop-filter:blur(var(--blur));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transform:translateY(10px); opacity:0;
+      animation:cardIn .8s ease forwards;
+      color:#fff;
+    }
+    @keyframes cardIn{to{opacity:1; transform:translateY(0)}}
+    .card__title{font-size:1.5rem; font-weight:600; text-align:center; margin:26px 0 8px;}
+    .card__subtitle{text-align:center; color:#c9c9d1; font-size:.94rem; margin-bottom:8px;}
+    form{padding:18px 28px 30px;}
+    .field{position:relative; margin-top:18px;}
+    .field__wrap{
+      display:flex; align-items:center; gap:10px;
+      border:1px solid var(--card-border);
+      background:rgba(255,255,255,.04);
+      border-radius:14px; padding:14px 14px 10px; transition:.25s;
+    }
+    .field__wrap:focus-within{
+      border-color:rgba(255,255,255,.5); box-shadow:var(--focus);
+      background:rgba(255,255,255,.06);
+    }
+    .field__icon{font-size:1.2rem; color:#c9c9d1;}
+    .field__box{flex:1; position:relative;}
+    .field__input{
+      width:100%; background:transparent; border:none; outline:none; color:#fff;
+      font-size:1rem; height:26px; padding:0;
+    }
+    .field__label{
+      position:absolute; left:0; top:-2px; font-size:.85rem; color:#c9c9d1;
+      transition:transform .2s ease, opacity .2s ease; transform-origin:left;
+    }
+    .field__input:placeholder-shown + .field__label{
+      transform:translateY(8px) scale(1.02); opacity:.85;
+    }
+    .field__input:not(:placeholder-shown)+.field__label,
+    .field__input:focus+.field__label{
+      transform:translateY(-12px) scale(.88); opacity:.95;
+    }
+
+    /* Eye button */
+    .eye{
+      background:transparent!important; border:0!important; padding:6px; margin:-6px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius:10px; cursor:pointer; color:#c9c9d1;
+      -webkit-appearance:none; appearance:none;
+      transition:.2s;
+    }
+    .eye:hover{color:#fff}
+    .eye i{pointer-events:none}
+
+    .row{display:flex; align-items:center; justify-content:space-between; margin-top:14px; flex-wrap:wrap;}
+    .checkbox{display:flex; align-items:center; gap:8px; color:#c9c9d1; font-size:.93rem; cursor:pointer;}
+    .checkbox input{width:18px; height:18px; accent-color:#60a5fa;}
+    .link{color:#fff; text-decoration:none; font-size:.93rem;}
+    .link:hover{text-decoration:underline;}
+
+    .btn{
+      margin-top:20px; width:100%; border:none; cursor:pointer;
+      border-radius:14px; padding:14px 16px; font-weight:600; font-size:1rem;
+      background:linear-gradient(90deg,#60a5fa,#7dd3fc,#22c55e);
+      color:#0b1220; transition:.2s;
+    }
+    .btn:hover{filter:brightness(1.05)}
+    .help{margin-top:14px; text-align:center; color:#c9c9d1; font-size:.92rem;}
+    .help a{color:#fff; text-decoration:underline;}
+
+    .card__logo-bottom{
+      display:block; margin:25px auto 12px; max-width:160px; height:auto; opacity:.9; transition:.3s;
+    }
+    .card__logo-bottom:hover{opacity:1;}
+    .error{margin-top:8px; color:#ef4444; font-size:.9rem; display:none;}
+
+    /* Modal Forgot */
+    .modal{position:fixed; inset:0; display:none; place-items:center; padding:20px; background:rgba(0,0,20,.5); z-index:20;}
+    .modal.open{display:grid;}
+    .modal__card{
+      width:100%; max-width:420px; background:var(--card-bg);
+      color:#fff; border:1px solid var(--card-border);
+      border-radius:16px; backdrop-filter:blur(var(--blur));
+      box-shadow:var(--shadow); padding:22px;
+    }
+    .modal__head{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+    .modal__head h3{margin:0; font-size:1.1rem;}
+    .modal__close{background:transparent; border:none; color:#fff; font-size:1.3rem; cursor:pointer;}
+  </style>
+</head>
+<body>
+
+  <!-- =============== HEADER =============== -->
+  <div class="header-topbar">
+    <div class="left">
+      <a href="#"><i class="ri-phone-fill"></i>0123 456 789</a>
+      <a href="#"><i class="ri-mail-fill"></i>contact@hahabook.com</a>
+      <a href="#"><i class="ri-map-pin-2-fill"></i>36 Minh Khai, Cầu Diễn, TP Hà Nội</a>
+    </div>
+    <div class="right">
+      <a href="#">TÀI KHOẢN</a>
+      <a href="#">ĐĂNG XUẤT</a>
+    </div>
+  </div>
+
+  <div class="header-main">
+    <div class="logo">HahaBook<span>.com</span></div>
+    <div class="search">
+      <input type="text" placeholder="Tìm kiếm sản phẩm...">
+      <button>Tìm kiếm</button>
+    </div>
+    <div class="support"><i class="ri-headphone-line"></i>Tư vấn khách hàng: <strong>0987 654 321</strong></div>
+  </div>
+
+  <div class="breadcrumbs">
+    <a href="#">Trang chủ</a> | <span>Đăng nhập</span>
+  </div>
+
+  <!-- =============== MAIN =============== -->
+  <main class="page-main">
+    <section class="card">
+      <div class="card__title">Đăng nhập</div>
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <div class="field__wrap">
+            <i class="ri-mail-line field__icon"></i>
+            <div class="field__box">
+              <input id="email" type="email" class="field__input" placeholder=" " required />
+              <label for="email" class="field__label">Email</label>
+            </div>
+          </div>
+          <div id="emailError" class="error">Vui lòng nhập email hợp lệ.</div>
+        </div>
+
+        <div class="field">
+          <div class="field__wrap">
+            <i class="ri-lock-2-line field__icon"></i>
+            <div class="field__box">
+              <input id="password" type="password" class="field__input" placeholder=" " required minlength="6" />
+              <label for="password" class="field__label">Mật khẩu</label>
+            </div>
+            <button type="button" class="eye" id="togglePass"><i class="ri-eye-off-line" id="eyeIcon"></i></button>
+          </div>
+          <div id="passError" class="error">Mật khẩu tối thiểu 6 ký tự.</div>
+        </div>
+
+        <div class="row">
+          <label class="checkbox"><input type="checkbox"> Ghi nhớ đăng nhập</label>
+          <a href="#" class="link" id="openForgot">Quên mật khẩu?</a>
+        </div>
+
+        <button class="btn" type="submit">Đăng nhập</button>
+        <p class="help">Chưa có tài khoản? <a href="registration.html">Đăng ký</a></p>
+
+        <img src="logo.png" alt="Logo" class="card__logo-bottom" onerror="this.style.display='none'">
+      </form>
+    </section>
+  </main>
+
+  <!-- =============== MODAL =============== -->
+  <div class="modal" id="forgotModal">
+    <div class="modal__card">
+      <div class="modal__head">
+        <h3>Khôi phục mật khẩu</h3>
+        <button class="modal__close" id="closeForgot"><i class="ri-close-line"></i></button>
+      </div>
+      <p style="color:#c9c9d1;margin-bottom:10px;">Nhập email để nhận liên kết đặt lại mật khẩu.</p>
+      <div class="field">
+        <div class="field__wrap">
+          <i class="ri-mail-line field__icon"></i>
+          <div class="field__box">
+            <input id="forgotEmail" type="email" class="field__input" placeholder=" " required />
+            <label for="forgotEmail" class="field__label">Email</label>
+          </div>
+        </div>
+      </div>
+      <button class="btn" id="sendReset">Gửi liên kết</button>
+    </div>
+  </div>
+
+  <script>
+    const togglePass=document.getElementById('togglePass');
+    const eyeIcon=document.getElementById('eyeIcon');
+    const passInput=document.getElementById('password');
+    togglePass.addEventListener('click',()=>{
+      const isHidden=passInput.type==='password';
+      passInput.type=isHidden?'text':'password';
+      eyeIcon.className=isHidden?'ri-eye-line':'ri-eye-off-line';
+    });
+
+    const modal=document.getElementById('forgotModal');
+    document.getElementById('openForgot').onclick=e=>{e.preventDefault();modal.classList.add('open');};
+    document.getElementById('closeForgot').onclick=()=>modal.classList.remove('open');
+    modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open');};
+
+    const form=document.getElementById('loginForm');
+    form.onsubmit=e=>{
+      e.preventDefault();
+      const email=document.getElementById('email');
+      const pass=document.getElementById('password');
+      const emailError=document.getElementById('emailError');
+      const passError=document.getElementById('passError');
+      emailError.style.display=passError.style.display='none';
+      let ok=true;
+      if(!/^[^@]+@[^@]+\.[^@]+$/.test(email.value)){emailError.style.display='block';ok=false;}
+      if(pass.value.length<6){passError.style.display='block';ok=false;}
+      if(ok){alert('Đăng nhập thành công (demo)!');}
+    };
+  </script>
+</body>
+</html>
