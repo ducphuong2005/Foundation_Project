@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Happybook</title>
+    <link rel="stylesheet" href="checkout.css">
+    <!-- Có thể dùng Bootstrap grid -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+</head>
+<body>
+
+<header class="header">
+    <img src="/Anh/logo.jpg" alt="logo">
+</header>
+
+<main class="checkout-container">
+    <div class="checkout-content">
+        <!-- LEFT: Thông tin giao hàng -->
+        <section class="checkout-left">
+            <div class="breadcrumb">
+                <a href="#">Home</a> › <a href="cart.html">Cart</a> › <a href="checkout.html">Shipping Information</a>
+            </div>
+            <h2>Shipping Information</h2>
+
+            <div class="user-info">
+                <img src="/Anh/user.png" alt="user">
+                <div>
+                    <p><strong>Hoàng Văn Trường</strong> (hoangvantruongcntt22@gmail.com)</p>
+                    <a href="#" class="logout">Log out</a>
+                </div>
+            </div>
+
+            <form class="shipping-form">
+                <input type="text" placeholder="Thêm địa chỉ mới">
+                <input type="text" placeholder="Họ và tên">
+                <input type="text" placeholder="Số điện thoại">
+                <input type="text" placeholder="Địa chỉ">
+
+                <div class="form-row">
+                    <select>
+                        <option>VietNam</option>
+                    </select>
+                    <select>
+                        <option>Select province / city</option>
+                        <option value="HY">Hưng Yên</option>
+                        <option value="NĐ">Nam Định</option>
+                        <option value="QN">Quảng Ninh</option>
+                        <option value="BL">Berlin</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <select>
+                        <option>Select district</option>
+                    </select>
+                    <select>
+                        <option>Select ward / commune</option>
+                    </select>
+                </div>
+            </form>
+            <div class="payment-section">
+                <div class="methods">               
+                    <div class="shipping-method">
+                        <h3>Shipping Method</h3><br>
+                        <label><input type="radio" name="ship" checked> Standard delivery</label>
+                        <label><input type="radio" name="ship"> Express delivery</label>
+                        <label><input type="radio" name="ship"> Same-day delivery</label>
+                        <label><input type="radio" name="ship"> Pick up at store</label>
+                    </div>
+                <div class="payment-methods">
+                    <h3>Payment Method</h3><br>
+                    <label><input type="radio" name="pay" checked> Cash on Delivery (COD)</label>
+                    <label><input type="radio" name="pay"> Bank transfer</label>
+                    <label><input type="radio" name="pay"> Local ATM card via OnePay</label>
+                    <label><input type="radio" name="pay"> Visa/Master/JCB/Amex via OnePay</label>
+                    <label><input type="radio" name="pay"> MoMo e-wallet</label>
+                </div>
+                </div>
+                <div class="btn-row">
+                    <a href="cart.html" class="back">← Back to Cart</a>
+                    <button class="btn-complete">Place Order</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT: Giỏ hàng + Tổng tiền -->
+        <section class="checkout-right">
+            <div class="order-summary">
+                <div class="item">
+                    <img src="/Anh/biasach.jpg">
+                    <div class="details">
+                        <p><strong>Xứ Mèo</strong></p>
+                        <p>79,200đ</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="/Anh/biasach.jpg">
+                    <div class="details">
+                        <p><strong>Việt Nam – Ăn Mặc Thong Dong</strong></p>
+                        <p>171,000đ</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="/Anh/biasach.jpg">
+                    <div class="details">
+                        <p><strong>Thực Hành Dịch Tiếng Trung</strong></p>
+                        <p>79,200đ</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="/Anh/biasach.jpg">
+                    <div class="details">
+                        <p><strong>Tân Thanh</strong></p>
+                        <p>79,200đ</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="/Anh/biasach.jpg">
+                    <div class="details">
+                        <p><strong>Ngôn Ngữ Trong Thể Thao Việt - Hán</strong></p>
+                        <p>108,000đ</p>
+                    </div>
+                </div>
+
+                <div class="discount">
+                    <input type="text" placeholder="Mã giảm giá">
+                    <button>Sử dụng</button>
+                </div>
+
+                <div class="price-info">
+                    <p>Tạm tính: <span>516,600đ</span></p>
+                    <p>Phí vận chuyển: <span>—</span></p>
+                    <br>
+                    <hr>
+                    <h3>Tổng cộng: <span>516,600đ</span></h3>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- SHIPPING & PAYMENT -->
+    
+</main>
+
+<footer class="footer">
+    <p>Powered by Happybook.com</p>
+</footer>
+
+</body>
+</html>
