@@ -9,5 +9,4 @@ From the Book Providers’ side, the website gives them various tools for managi
 
 From the Administrator’s perspective, the website allows them to manage the overall operation of the platform. Administrators can control user accounts of both Customers and Book Providers, ensuring that only authorized actors can access the system. They are responsible for monitoring and updating the book inventory, verifying the accuracy of book information, and removing inappropriate content if necessary. Administrators also supervise the order process, handle disputes, and provide support whenever issues between Customers and Book Providers arise. In addition, the website provides Administrators with reporting and analytics tools to track sales performance, revenue statistics, and system activities, which help them make decisions for improving the platform’s efficiency and reliability.
 
-![Uploading image.png…]()
 
