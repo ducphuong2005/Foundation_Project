@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin_style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div>
+            <img src="../logo3.png" height="45px" >
+        </div>
+        <div class="logo" >
+           
+        </div>
+        <ul class="menu">
+          <li class="active"><i class="fa fa-chart-bar"></i> Dashboard</li>
+          <li><i class="fa fa-chart-line"></i> Analytics</li>
+          <li><i class="fa fa-lightbulb"></i> Insights</li>
+          <li><i class="fa fa-users"></i> Customers</li>
+          <li><i class="fa fa-store"></i> Store</li>
+          <li><i class="fa fa-tag"></i> Discounts</li>
+          <li><i class="fa fa-cogs"></i> Integration</li>
+          <li><i class="fa fa-comment"></i> Feedback</li>
+          <li><i class="fa fa-gear"></i> Settings</li>
+          <li><i class="fa fa-circle-question"></i> Help Desk</li>
+          <li class="logout"><i class="fa fa-right-from-bracket"></i> Log out</li>
+        </ul>
+      </div>
+      <div class="main">
+        <header>
+          <h1> Add Book </h1>
+        </header>
+        <section>
+            <div class="form-container">
+                <form action="/submit_new_book" method="POST" enctype="multipart/form-data">
+                    
+                    <div class="form-group">
+                        <label for="book_title">Book Title (*)</label>
+                        <input type="text" id="book_title" name="book_title" required>
+                    </div>
+    
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="author">Author (*)</label>
+                            <input type="text" id="author" name="author" required>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="publisher">Publisher</label>
+                            <input type="text" id="publisher" name="publisher">
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="category">Category (*)</label>
+                        <select id="category" name="category" required>
+                            <option value="">-- Select Category --</option>
+                            <option value="literature">Literature</option>
+                            <option value="economy">Economy</option>
+                            <option value="psychology">Psychology-Life skills</option>
+                            <option value="children">Children's Books</option>
+                            </select>
+                    </div>
+    
+                    <div class="form-row">
+                        <div class="form-group third-width">
+                            <label for="price">Original Price (₫)</label>
+                            <input type="number" id="price" name="price" min="0" step="1000" required>
+                        </div>
+                        <div class="form-group third-width">
+                            <label for="discount">Discount (%)</label>
+                            <input type="number" id="discount" name="discount" min="0" max="100" value="0">
+                        </div>
+                        <div class="form-group third-width">
+                            <label for="stock">Stock Quantity (*)</label>
+                            <input type="number" id="stock" name="stock" min="0" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cover_image">Book Cover Image (*)</label>
+                        <input type="file" id="cover_image" name="cover_image" accept="image/*" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="description">Short Description</label>
+                        <textarea id="description" name="description" rows="4"></textarea>
+                    </div>
+    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Save Book</button>
+                        <button type="reset" class="btn-secondary"><i class="fas fa-undo"></i> Reset Form</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+      </div>
+
+</body>
+</html>

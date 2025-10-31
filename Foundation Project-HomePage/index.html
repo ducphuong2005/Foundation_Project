@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+</head>
+<body>
+    <div class="topbar">
+        <div class="contact">
+            <div class="item">
+            <i class="fas fa-phone"></i>
+            <a href="#">0987654321</a>
+            </div>
+            <div class="item">
+                <i class="fas fa-envelope"></i>
+                <a href="#">hotroHappyBook@gmail.com</a>
+            </div>
+            <div class="item">
+                <i class="fas fa-map-marker-alt"></i>
+                <a href="#">Trường Đại học Công nghiệp Hà Nội</a>
+            </div>
+        </div>
+        <div class="account"> 
+            <a href="#">Log in</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="" style=" width: 300px;">
+            </a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Search book...">
+            <button>Search</button>
+        </div>
+        <div class="cart">
+            <a href="#">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </header>
+    <div class="main-content">
+        <div class="sidebar">
+            <h3 style="padding: 10px; background-color:rgb(248, 155, 155); border-radius: 6px 6px 0 0;">Category</h3>
+            <div class="sidebar-menu">
+                <ul>
+                    <li><a href="#">New Releases</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">This Week's Highlights</a></li>
+                            <li><a href="#">Just Arrived</a></li>
+                            <li><a href="#">Pre-Order Books</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Best Sellers</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Top Fiction Books</a></li>
+                            <li><a href="#">Top Non-fiction Books</a></li>
+                            <li><a href="#">Readers’ Favorites</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Literature</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Vietnamese Literature</a></li>
+                            <li><a href="#">World Literature</a></li>
+                            <li><a href="#">Poetry & Short Stories</a></li>
+                            <li><a href="#">Memoirs & Autobiographies</a></li>
+                            <li><a href="#">Historical Fiction</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Economy</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Business & Management</a></li>
+                            <li><a href="#">Marketing & Sales</a></li>
+                            <li><a href="#">Finance & Investment</a></li>
+                            <li><a href="#">Entrepreneurship</a></li>
+                            <li><a href="#">Leadership & Strategy</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Psychology-Life skills</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Personal Development</a></li>
+                            <li><a href="#">Mindfulness & Happiness</a></li>
+                            <li><a href="#">Communication & Relationships</a></li>
+                            <li><a href="#">Workplace Psychology</a></li>
+                            <li><a href="#">Emotional Intelligence</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Children's Books</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Picture Books</a></li>
+                            <li><a href="#">Fairy Tales & Fables</a></li>
+                            <li><a href="#">Educational Stories</a></li>
+                            <li><a href="#">Science for Kids</a></li>
+                            <li><a href="#">Moral Stories</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Foreign Language Books</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">English Learning</a></li>
+                            <li><a href="#">Japanese Learning</a></li>
+                            <li><a href="#">Korean Learning</a></li>
+                            <li><a href="#">Chinese Learning</a></li>
+                            <li><a href="#">Dictionaries & Grammar</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Textbook & References</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Primary & Secondary School</a></li>
+                            <li><a href="#">High School</a></li>
+                            <li><a href="#">University & College</a></li>
+                            <li><a href="#">Exam Preparation</a></li>
+                            <li><a href="#">Reference Books</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Comics & Manga</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Shonen (Action)</a></li>
+                            <li><a href="#">Shojo (Romance)</a></li>
+                            <li><a href="#">Seinen (Adult)</a></li>
+                            <li><a href="#">Fantasy & Adventure</a></li>
+                            <li><a href="#">Comedy & Slice of Life</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Religion & Philosophy</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Buddhism</a></li>
+                            <li><a href="#">Christianity</a></li>
+                            <li><a href="#">Islam</a></li>
+                            <li><a href="#">Eastern Philosophy</a></li>
+                            <li><a href="#">Spiritual Life</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <section class="banner-section">
+                <div class="slideshow-container">
+                    <div class="slide-wrapper">
+                        <div class="slide">
+                            <img src="banner3.png" alt="Banner 3">
+                        </div>
+                        <div class="slide">
+                            <img src="banner1.png" alt="Banner 1">
+                        </div>
+                        
+                        <div class="slide">
+                            <img src="banner2.png" alt="Banner 2">
+                        </div>
+                        
+                        <div class="slide">
+                            <img src="banner3.png" alt="Banner 3">
+                        </div>
+                        <div class="slide">
+                            <img src="banner1.png" alt="Banner 1">
+                        </div>
+                        
+                    </div>
+                    
+                    <button class="prev-btn">❮</button>
+                    <button class="next-btn">❯</button>
+                </div>
+            </section>
+            <div class="banner2">
+                <img src="banner1.png" alt="">
+                <img src="banner2.png" alt="">
+            </div>
+            <div class="product-display">
+    
+                <div class="product-tabs">
+                    <a href="#" class="active" data-tab="new">Hot New Books</a>
+                    <a href="#" data-tab="promo">Promotional Books</a>
+                </div>
+            
+                <div class="tab-content-wrapper">
+                    
+                    <div id="tab-new" class="product-grid tab-pane active">
+                        
+                        <div class="product-item">
+                            <div class="sale-badge">-10%</div>
+                            <img src="biasach.jpg" alt="Sách Ẩn Mặc">
+                            <p class="product-title">Việt Nam - Ẩn Mặc Thông Dung</p>
+                            <p class="product-price-old">190.000₫</p>
+                            <p class="product-price-new">171.000₫</p>
+                            <div class="product-actions">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="buy-now"><a href="#">Buy Now</a></button>
+                            </div>
+                        </div>
+                        
+                        <div class="product-item">
+                            <div class="sale-badge">-30%</div>
+                            <img src="biasach.jpg" alt="Sách Dịch Anh">
+                            <p class="product-title">Thực Hành Dịch Tiếng Anh</p>
+                            <p class="product-price-old">113.000₫</p>
+                            <p class="product-price-new">79.200₫</p>
+                            <div class="product-actions">
+                                <button class="add-to-cart">Add to cart</button>
+                                <button class="buy-now"><a href="#">Buy Now</a></button>
+                                </div>
+                        </div>
+                        
+                        <div class="product-item">
+                            <img src="biasach.jpg" alt="Sách Tân Thanh">
+                            <p class="product-title">Tân Thanh (Sách Văn học)</p>
+                            <p class="product-price-old">88.000₫</p>
+                            <p class="product-price-new">79.200₫</p>
+                            <div class="product-actions">
+                                <button class="add-to-cart">Add to cart</button>
+                                <button class="buy-now"><a href="#">Buy Now</a></button>
+                                </div>
+                        </div>
+                        
+                        <div class="product-item">
+                            <div class="sale-badge">-10%</div>
+                            <img src="biasach.jpg" alt="Ngọn Ngữ">
+                            <p class="product-title">Ngọn Ngữ Trong Thể Thao</p>
+                            <p class="product-price-old">120.000₫</p>
+                            <p class="product-price-new">108.000₫</p>
+                            <div class="product-actions">
+                                <button class="add-to-cart">Add to cart</button>
+                                <button class="buy-now"><a href="#">Buy Now</a></button>
+                                </div>
+                        </div>
+                        
+                        <div class="product-item">
+                            <img src="biasach.jpg" alt="Ngàn Năm">
+                            <p class="product-title">Ngàn Năm Trà Việt</p>
+                            <p class="product-price-old">299.000₫</p>
+                            <p class="product-price-new">261.000₫</p>
+                            <div class="product-actions">
+                                <button class="add-to-cart">Add to cart</button>
+                                <button class="buy-now"><a href="#">Buy Now</a></button>
+                                </div>
+                        </div>
+                         <div class="product-item">
+                            <div class="sale-badge">-20%</div>
+                            <img src="biasach.jpg" alt="Kinh Tế">
+                            <p class="product-title">Kinh Tế Vĩ Mô Cơ Bản</p>
+                            <p class="product-price-old">160.000₫</p>
+                            <p class="product-price-new">128.000₫</p>
+                            <div class="product-actions">
+                                <button class="add-to-cart">Add to cart</button>
+                                <button class="buy-now"><a href="#">Buy Now</a></button>
+                                </div>
+                        </div>
+                         <div class="product-item">
+                            <img src="biasach.jpg" alt="Lãnh Đạo">
+                            <p class="product-title">Nghệ Thuật Lãnh Đạo Trong Thế Kỷ Mới</p>
+                            <p class="product-price-old">300.000₫</p>
+                            <p class="product-price-new">270.000₫</p>
+                            <div class="product-actions">
+                                <button class="add-to-cart">Add to cart</button>
+                                <button class="buy-now"><a href="#">Buy Now</a></button>
+                                </div>
+                        </div>
+                         <div class="product-item">
+                            <div class="sale-badge">-5%</div>
+                            <img src="biasach.jpg" alt="Thiếu Nhi">
+                            <p class="product-title">Truyện Cổ Tích Hay Nhất Cho Bé</p>
+                            <p class="product-price-old">80.000₫</p>
+                            <p class="product-price-new">76.000₫</p>
+                            <div class="product-actions">
+                                <button class="add-to-cart">Add to cart</button>
+                                <button class="buy-now"><a href="#">Buy Now</a></button>
+                                </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div id="tab-promo" class="product-grid tab-pane">
+                        <div class="product-item">
+                            <div class="sale-badge">-50%</div>
+                            <img src="biasach.jpg" alt="Sách Rẻ">
+                            <p class="product-title">Sách Giảm Giá Rẻ Nhất Mọi Thời Đại</p>
+                            <p class="product-price-old">200.000₫</p>
+                            <p class="product-price-new">100.000₫</p>
+                            <div class="product-actions">
+                                <button class="add-to-cart">Add to cart</button>
+                                <button class="buy-now"><a href="#">Buy Now</a></button>
+                                </div>
+                        </div>
+                         <div class="product-item">
+                            <div class="sale-badge">-40%</div>
+                            <img src="biasach.jpg" alt="Sách Tặng Kèm">
+                            <p class="product-title">Sách Tặng Kèm Voucher 50K</p>
+                            <p class="product-price-old">150.000₫</p>
+                            <p class="product-price-new">90.000₫</p>
+                            <div class="product-actions">
+                                <button class="add-to-cart">Add to cart</button>
+                                <button class="buy-now"><a href="#">Buy Now</a></button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="standard-product-section">
+    
+                <div class="section-header">
+                    <h2 class="section-title">Sách Văn Học</h2>
+                    <div class="nav-arrows">
+                        <button class="arrow-btn prev-section">❮</button>
+                        <button class="arrow-btn next-section">❯</button>
+                    </div>
+                </div>
+            
+                <div class="product-grid">
+                    
+                    <div class="product-item">
+                        <div class="sale-badge">-10%</div>
+                        <img src="biasach.jpg" alt="Tanukoi">
+                        <p class="product-title">Tanukoi - Mùa Xuân Của...</p>
+                        <p class="product-price-old">79.000₫</p>
+                        <p class="product-price-new">63.900₫</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="buy-now"><a href="#">Buy Now</a></button>
+                            </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="sale-badge">-10%</div>
+                        <img src="biasach.jpg" alt="Quy đen">
+                        <p class="product-title">Quy Đen Bên Bạn Một Cái Ôm</p>
+                        <p class="product-price-old">120.000₫</p>
+                        <p class="product-price-new">108.000₫</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="buy-now"><a href="#">Buy Now</a></button>
+                            </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="biasach.jpg" alt="Tình Yêu">
+                        <p class="product-title">Tình Yêu Bộ Xịt</p>
+                        <p class="product-price-old">130.000₫</p>
+                        <p class="product-price-new">117.000₫</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="buy-now"><a href="#">Buy Now</a></button>
+                            </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="sale-badge">-10%</div>
+                        <img src="biasach.jpg" alt="Moses">
+                        <p class="product-title">Moses Trên Bình Nguyên</p>
+                        <p class="product-price-old">195.000₫</p>
+                        <p class="product-price-new">175.500₫</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="buy-now"><a href="#">Buy Now</a></button>
+                            </div>
+                    </div>
+                    
+                    </div>
+            </section>
+            
+            <section class="standard-product-section">
+                
+                <div class="section-header">
+                    <h2 class="section-title">Sách Tâm Lý - Kỹ Năng Sống</h2>
+                    <div class="nav-arrows">
+                        <button class="arrow-btn prev-section">❮</button>
+                        <button class="arrow-btn next-section">❯</button>
+                    </div>
+                </div>
+            
+                <div class="product-grid">
+                    <div class="product-item">
+                        <div class="sale-badge">-10%</div>
+                        <img src="biasach.jpg" alt="Tanukoi">
+                        <p class="product-title">Tanukoi - Mùa Xuân Của...</p>
+                        <p class="product-price-old">79.000₫</p>
+                        <p class="product-price-new">63.900₫</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="buy-now"><a href="#">Buy Now</a></button>
+                            </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="sale-badge">-10%</div>
+                        <img src="biasach.jpg" alt="Quy đen">
+                        <p class="product-title">Quy Đen Bên Bạn Một Cái Ôm</p>
+                        <p class="product-price-old">120.000₫</p>
+                        <p class="product-price-new">108.000₫</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="buy-now"><a href="#">Buy Now</a></button>
+                            </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="biasach.jpg" alt="Tình Yêu">
+                        <p class="product-title">Tình Yêu Bộ Xịt</p>
+                        <p class="product-price-old">130.000₫</p>
+                        <p class="product-price-new">117.000₫</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="buy-now"><a href="#">Buy Now</a></button>
+                            </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="sale-badge">-10%</div>
+                        <img src="biasach.jpg" alt="Moses">
+                        <p class="product-title">Moses Trên Bình Nguyên</p>
+                        <p class="product-price-old">195.000₫</p>
+                        <p class="product-price-new">175.500₫</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to cart</button>
+                            <button class="buy-now"><a href="#">Buy Now</a></button>
+                            </div>
+                    </div>
+                    </div>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            
+            <div class="footer-column info">
+                <h3>HappyBook.com</h3>
+                <p>HappyBook is the leading online bookstore in Vietnam. We are committed to providing genuine, diverse books at the best prices.</p>
+                <p><strong>Hotline:</strong> 0987.654.321</p>
+                <p><strong>Email:</strong> hotroHappyBook@gmail.com</p>
+            </div>
+    
+            <div class="footer-column links">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Shopping Guide</a></li>
+                    <li><a href="#">Return & Exchange Policy</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Submit a Support Request</a></li>
+                    <li><a href="#">Shipping & Delivery</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-column links">
+                <h4>About HappyBook</h4>
+                <ul>
+                    <li><a href="#">Company Introduction</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Publishing Partnership</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-column follow">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <h4>Payment Methods</h4>
+                <div class="payment-icons">
+                    <img src="visa.png" alt="Visa">
+                    <img src="mastercard.png" alt="Mastercard">
+                    <img src="momo.png" alt="Momo">
+                    <img src="cod.png" alt="COD">
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 HappyBook.com. All rights reserved by HappyBook.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</body>
+</html>
