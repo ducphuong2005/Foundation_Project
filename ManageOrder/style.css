@@ -1,0 +1,374 @@
+/* --- General Styles & Resets --- */
+:root {
+    --primary-color: #4A4DE6;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6B7280;
+    --background-color: #F9FAFB;
+    --panel-background: #FFFFFF;
+    --border-color: #E5E7EB;
+    --success-color: #10B981;
+    --warning-color: #F59E0B;
+    --danger-color: #EF4444;
+}
+
+body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 2rem;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Main Container --- */
+.order-management-container {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1400px;
+    background-color: var(--panel-background);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+}
+
+/* --- Left Panel: Order Details --- */
+.order-details-panel {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-title h1 {
+    font-size: 1.75rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.status {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    margin-right: 0.5rem;
+}
+
+.status.in-progress {
+    background-color: #E0E7FF;
+    color: #4338CA;
+}
+
+.status.delay {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+.order-nav button {
+    background: none;
+    border: 1px solid var(--border-color);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.btn-cancel {
+    background-color: #FEE2E2;
+    color: var(--danger-color);
+}
+.btn-cancel:hover {
+    background-color: #FECACA;
+}
+
+.btn-feedback {
+    background-color: var(--primary-color);
+    color: white;
+}
+.btn-feedback:hover {
+    background-color: #383dd1;
+}
+.btn-feedback:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    cursor: not-allowed;
+}
+
+.shipment-route {
+    background-color: #F9FAFB;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.location .icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.location-title {
+    font-weight: 500;
+    margin: 0;
+}
+
+.location-address {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 2px;
+    background-color: var(--border-color);
+}
+
+.order-summary {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.order-summary p {
+    margin: 0.25rem 0;
+}
+
+.alert-box {
+    background-color: #FEF9C3;
+    color: #92400E;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+.alert-box i {
+    font-size: 1.25rem;
+}
+
+.shipment-status-container h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.status-item {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    padding-bottom: 1.5rem;
+    min-height: 80px;
+}
+
+.status-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 34px;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color);
+}
+
+.status-item:last-child {
+    padding-bottom: 0;
+}
+
+.status-item.current:not(:last-child)::before,
+.status-item.completed:not(:last-child)::before {
+    /*background-color: var(--primary-color);*/
+}
+
+.status-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-secondary);
+    z-index: 1;
+}
+
+.status-icon.completed {
+    background-color: var(--success-color);
+    color: white;
+}
+.status-item.current .status-icon {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.status-text {
+    font-weight: 500;
+    margin: 0;
+}
+.status-subtext {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0.25rem 0;
+}
+.status-time {
+    font-size: 0.8rem;
+    color: #9CA3AF;
+    margin-top: 0.5rem;
+}
+
+/* --- Right Panel: Map --- */
+.map-panel {
+    position: relative;
+    background-color: #E5E7EB;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-secondary);
+    text-align: center;
+}
+.map-placeholder i {
+    font-size: 4rem;
+    color: #9CA3AF;
+    margin-bottom: 1rem;
+}
+.map-placeholder p {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0;
+}
+.map-placeholder span {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.map-controls {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.map-controls button {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* --- CSS cho Modal Hủy Đơn Hàng --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+    margin-bottom: 8px;
+}
+
+.modal-content p {
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#cancel-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    font-size: 14px;
+    margin-bottom: 16px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+#cancel-form .btn-submit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--danger-color);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}

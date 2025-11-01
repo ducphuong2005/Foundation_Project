@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Đơn Hàng</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="Script.js"></script>
+</head>
+<body>
+
+    <div class="order-management-container">
+        <div class="order-details-panel">
+            <header class="panel-header">
+                <div class="order-title">
+                    <h1>Order ID: BK-18102025</h1>
+                    <span class="status in-progress">Processing</span>
+                </div>
+                <div class="order-nav">
+                    <button><i class="fa-solid fa-chevron-left"></i></button>
+                    <button><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </header>
+
+            <div class="action-buttons">
+                <button class="btn btn-cancel" id="cancel-btn">
+                    <i class="fa-solid fa-ban"></i> Cancel Order
+                </button>
+                <button class="btn btn-feedback" disabled>
+                    <i class="fa-solid fa-star"></i> Send Feedback
+                </button>
+            </div>
+
+            <div class="shipment-route">
+                <div class="location">
+                    <i class="fa-solid fa-box-open icon"></i>
+                    <div>
+                        <p class="location-title">Provider's address</p>
+                        <p class="location-address">Kho Tiki, 247 Cầu Giấy, Hà Nội</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-line"></div>
+                </div>
+                <div class="location">
+                    <i class="fa-solid fa-house-chimney icon"></i>
+                    <div>
+                        <p class="location-title">Receiver's address</p>
+                        <p class="location-address">144 Xuân Thủy, Cầu Giấy, Hà Nội</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <p><strong>Order date:</strong> 18 Tháng 10, 2025 11:00 AM</p>
+                <p><strong>Expected delivery date: </strong> 21 Tháng 10, 2025 05:30 PM</p>
+            </div>
+
+            <div class="alert-box">
+                <i class="fa-solid fa-circle-info"></i>
+                <p>Due to high volume of orders during promotional season, delivery time may be affected. Thank you for your understanding!</p>
+            </div>
+
+            <div class="shipment-status-container">
+                <h2>Shipment status</h2>
+                <div class="status-item">
+                    <div class="status-icon completed"><i class="fa-solid fa-check"></i></div>
+                    <div class="status-details">
+                        <p class="status-text"><strong>Order Placed</strong></p>
+                        <p class="status-subtext">Thông tin đơn hàng đã được gửi cho người bán.</p>
+                        <p class="status-time">18 Tháng 10, 2025 11:00 AM</p>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon completed"><i class="fa-solid fa-check"></i></div>
+                    <div class="status-details">
+                        <p class="status-text"><strong>Preparing To Ship</strong></p>
+                        <p class="status-subtext">Người bán đang chuẩn bị để giao đơn hàng của bạn.</p>
+                        <p class="status-time">18 Tháng 10, 2025 02:30 PM</p>
+                    </div>
+                </div>
+                <div class="status-item current">
+                    <div class="status-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div class="status-details">
+                        <p class="status-text"><strong>Confirm Shipment</strong></p>
+                        <p class="status-subtext">Đơn hàng của bạn đã được nhận bởi đơn vị vận chuyển.</p>
+                        <p class="status-time">19 Tháng 10, 2025 09:15 AM</p>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon"></div>
+                    <div class="status-details">
+                        <p class="status-text"><strong>Picked Up</strong></p>
+                        <p class="status-subtext">Shipper đang trên đường giao hàng đến bạn.</p>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon"></div>
+                    <div class="status-details">
+                        <p class="status-text"><strong>Shipment Received</strong></p>
+                        <p class="status-subtext">Đơn hàng đã được giao đến bạn. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-panel">
+            <div class="map-placeholder">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <p>Map to track the shipment process</p>
+                <span>(Developing)</span>
+            </div>
+            <div class="map-controls">
+                <button><i class="fa-solid fa-plus"></i></button>
+                <button><i class="fa-solid fa-minus"></i></button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
