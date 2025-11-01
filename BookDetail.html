@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết sách | HahaBook.com</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      /* RESET & BASE =======================================*/
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #c9f1cf, #e6d2ff, #f8d6f0);
+        min-height: 100vh;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      /* CONTAINER =========================================*/
+      .container {
+        width: 92%;
+        max-width: 1300px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* HEADER ============================================*/
+      .top-bar {
+        background: #6da4ff;
+        color: #fff;
+        font-size: 14px;
+        padding: 10px 0;
+        letter-spacing: 0.2px;
+      }
+
+      .top-bar .left-info span {
+        margin-right: 25px;
+      }
+
+      .main-bar {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0.05);
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+      }
+
+      .logo {
+        font-size: 30px;
+        font-weight: 700;
+        color: #0066cc;
+        letter-spacing: 0.5px;
+      }
+      .logo span:last-child {
+        color: #ff6600;
+      }
+
+      .search-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .search-box input {
+        padding: 10px 14px;
+        width: 280px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+      .search-box input:focus {
+        border-color: #6da4ff;
+        box-shadow: 0 0 10px rgba(109, 164, 255, 0.3);
+      }
+      .search-box button {
+        padding: 10px 18px;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .search-box button:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+
+      /* BREADCRUMB ========================================*/
+      .breadcrumb {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(6px);
+        padding: 12px 0;
+        font-size: 15px;
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+      }
+      .breadcrumb a {
+        color: #007bff;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+      .breadcrumb a:hover {
+        text-decoration: underline;
+        opacity: 0.8;
+      }
+
+      /* BOOK DETAIL ========================================*/
+      .book-section {
+        display: flex;
+        justify-content: center;
+        padding: 80px 0;
+      }
+
+      .book-card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 25px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        padding: 50px;
+        gap: 60px;
+        width: 85%;
+        max-width: 1200px;
+        transition: all 0.5s ease;
+        backdrop-filter: blur(15px);
+        animation: fadeIn 0.8s ease forwards;
+      }
+
+      .book-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+      }
+
+      /* IMAGE ==============================================*/
+      .book-image img {
+        width: 360px;
+        border-radius: 18px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s ease;
+      }
+      .book-image img:hover {
+        transform: scale(1.04);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      }
+
+      /* CONTENT ============================================*/
+      .book-content {
+        flex: 1;
+        min-width: 400px;
+        animation: fadeUp 1s ease forwards;
+      }
+
+      .book-title {
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #2c2c2c;
+        letter-spacing: 0.5px;
+      }
+
+      .book-author,
+      .book-publisher {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 8px;
+      }
+
+      .book-price {
+        font-size: 20px;
+        margin-top: 12px;
+        color: #444;
+      }
+      .book-price span {
+        color: #e74c3c;
+        font-size: 26px;
+        font-weight: bold;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+      }
+
+      .book-desc {
+        margin: 20px 0 30px 0;
+        line-height: 1.7;
+        font-size: 15.5px;
+        color: #444;
+      }
+
+      /* ACTIONS ============================================*/
+      .book-actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .book-actions input {
+        width: 70px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.3s;
+      }
+      .book-actions input:focus {
+        border-color: #6da4ff;
+        box-shadow: 0 0 8px rgba(109, 164, 255, 0.4);
+      }
+
+      .btn {
+        border: none;
+        padding: 12px 22px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.35s ease;
+        font-size: 15px;
+      }
+
+      .add-cart {
+        background: linear-gradient(45deg, #6da4ff, #00c57f);
+        color: white;
+      }
+      .add-cart:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 197, 127, 0.35);
+      }
+
+      .buy-now {
+        background: linear-gradient(45deg, #ff8533, #ff6600);
+        color: white;
+      }
+      .buy-now:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(255, 102, 0, 0.35);
+      }
+
+      /* FOOTER =============================================*/
+      .footer {
+        text-align: center;
+        padding: 30px 0;
+        color: #555;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(6px);
+        font-size: 14px;
+        margin-top: 100px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      /* ANIMATIONS =========================================*/
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="top-bar">
+        <div class="container">
+          <div class="left-info">
+            <span><i class="fa fa-phone"></i> 0123 456 789</span>
+            <span><i class="fa fa-envelope"></i> contact@hahabook.com</span>
+            <span
+              ><i class="fa fa-location-dot"></i> 36 Minh Khai, Cầu Diễn, Hà
+              Nội</span
+            >
+          </div>
+          <div class="right-info">
+            <a href="#">TÀI KHOẢN</a> | <a href="#">ĐĂNG XUẤT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-bar">
+        <div class="container">
+          <div class="logo"><span>Haha</span>Book<span>.com</span></div>
+          <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+            <button>Tìm kiếm</button>
+          </div>
+          <div class="hotline">
+            <i class="fa fa-headphones"></i> Tư vấn: <span>0987 654 321</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <div class="container">
+        <a href="#">Trang chủ</a> / <a href="#">Sách</a> /
+        <span>Chi tiết sách</span>
+      </div>
+    </div>
+
+    <!-- Book Detail -->
+    <section class="book-section">
+      <div class="book-card">
+        <div class="book-image">
+          <img
+            src="https://cdn0.fahasa.com/media/catalog/product/i/m/image_195509_1_54517.jpg"
+            alt="Bìa sách"
+          />
+        </div>
+        <div class="book-content">
+          <h2 class="book-title">Tôi Thấy Hoa Vàng Trên Cỏ Xanh</h2>
+          <p class="book-author">Tác giả: <strong>Nguyễn Nhật Ánh</strong></p>
+          <p class="book-publisher">Nhà xuất bản: <strong>NXB Trẻ</strong></p>
+          <p class="book-price">Giá: <span>79.000đ</span></p>
+
+          <p class="book-desc">
+            Câu chuyện cảm động về tuổi thơ, tình bạn và những rung động đầu
+            đời. Tác phẩm được chuyển thể thành phim nổi tiếng cùng tên.
+          </p>
+
+          <div class="book-actions">
+            <label for="quantity">Số lượng:</label>
+            <input type="number" id="quantity" value="1" min="1" />
+            <button class="btn add-cart">Thêm vào giỏ</button>
+            <button class="btn buy-now">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 HahaBook.com - Mọi quyền được bảo lưu.</p>
+    </footer>
+  </body>
+</html>

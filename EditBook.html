@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Book - Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 220px;
+        background: linear-gradient(180deg, #4a6cf7, #5f83ff);
+        min-height: 100vh;
+        color: #fff;
+        padding: 20px;
+      }
+      .sidebar h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .sidebar ul {
+        list-style: none;
+      }
+      .sidebar li {
+        padding: 12px 10px;
+        margin: 8px 0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .sidebar li:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Main content */
+      .main {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        font-size: 26px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .edit-form {
+        background: #fff;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: auto;
+      }
+
+      .edit-form h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #4a6cf7;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: 0.2s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        border-color: #4a6cf7;
+        outline: none;
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .btn-save {
+        background: #4a6cf7;
+        color: #fff;
+      }
+
+      .btn-save:hover {
+        background: #3558e8;
+      }
+
+      .btn-cancel {
+        background: #ddd;
+      }
+
+      .btn-cancel:hover {
+        background: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Book Admin</h2>
+      <ul>
+        <li>Dashboard</li>
+        <li>Books</li>
+        <li>Orders</li>
+        <li>Customers</li>
+        <li>Reports</li>
+        <li>Settings</li>
+      </ul>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="header">
+        <h1>Edit Book</h1>
+        <input
+          type="date"
+          style="padding: 6px 10px; border-radius: 8px; border: 1px solid #ccc"
+        />
+      </div>
+
+      <div class="edit-form">
+        <h2>Book Information</h2>
+
+        <form>
+          <div class="form-group">
+            <label for="bookTitle">Book Title</label>
+            <input
+              type="text"
+              id="bookTitle"
+              placeholder="Enter book title"
+              value="The Great Adventure"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input
+              type="text"
+              id="author"
+              placeholder="Enter author name"
+              value="John Smith"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price ($)</label>
+            <input type="number" id="price" value="19.99" />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category">
+              <option>Fiction</option>
+              <option>Non-fiction</option>
+              <option>Education</option>
+              <option>Children</option>
+              <option>Romance</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              rows="4"
+              placeholder="Enter book description..."
+            >
+An exciting story full of twists and adventures.</textarea
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="cover">Cover Image</label>
+            <input type="file" id="cover" />
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-cancel">Cancel</button>
+            <button type="submit" class="btn btn-save">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
