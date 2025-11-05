@@ -226,3 +226,16 @@ header img {
     font-size: 14px;
     margin-top: 50px;
 }
+/* Tùy chỉnh cho đơn vị tiền tệ "đ" (Đồng) */
+
+.price-unit {
+    font-size: 0.7em; /* Làm nhỏ đơn vị tiền tệ */
+    vertical-align: super; /* Đưa lên cao */
+    margin-right: 2px; /* Khoảng cách nhỏ giữa đơn vị và số */
+}
+
+.total-price-large {
+    font-size: 0.7em; 
+    vertical-align: super;
+    margin-right: 3px;
+}
