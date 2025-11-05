@@ -14,18 +14,19 @@ body {
 .header {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
-    
 }
 .header-infor{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:rgb(117, 166, 240)
- ;
+    background-color:rgb(117, 166, 240);
     color:#fff ;
     width: 100%;
     padding: 10px 100px;
     margin-bottom: 25px;
+}
+.header-top img{
+    width: 300px;
 }
 .infor{
     display: flex;
@@ -51,8 +52,7 @@ body {
 .logo {
     font-size: 35px;
     font-weight: bold;
-    color: rgb(117, 166, 240)
-;
+    color: rgb(117, 166, 240);
 }
 
 .logo span {
@@ -74,7 +74,7 @@ body {
 
 .btn-search {
     padding: 8px 15px;
-    background-color:  rgb(117, 166, 240);
+    background-color: rgb(117, 166, 240);
     color: #fff;
     border: none;
     cursor: pointer;
@@ -86,7 +86,6 @@ body {
 }
 .home .div{
     padding: 5px 0px 5px 100px;
-    
 }
 .home a{
     text-decoration: none;
@@ -114,47 +113,62 @@ body {
     color: #555;
 }
 
-.cart-items {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.cart-item {
-    display: flex;
-    align-items: center;
+/* --- BẢNG SẢN PHẨM (Mới) --- */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 20px;
     background: #fff;
-    padding: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.05);
-    justify-content: space-between;
-    transition: all 0.3s ease; /* hiệu ứng mượt khi hover */
 }
 
-/* Hiệu ứng hover */
-.cart-item:hover {
-    transform: scale(1.05); /* phóng to nhẹ */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* bóng đổ */
-    z-index: 10; /* tránh bị đè nếu có khoảng cách nhỏ */
+.cart-table th, .cart-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
 }
 
+.cart-table th {
+    background-color: rgb(117, 166, 240);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
 
-.cart-item img {
+.cart-table tbody tr:hover {
+    background-color: #f7f7f7;
+}
+
+.product-name {
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-image img {
     width: 80px;
+    height: auto;
     border-radius: 5px;
 }
 
-.item-info {
-    flex: 1;
-    margin-left: 20px;
-}
-
-.item-info h3 {
-    font-size: 18px;
-}
-
-.price {
+.remove-btn {
+    cursor: pointer;
     color: #d00;
+    font-size: 1.2em;
+    transition: color 0.2s;
+}
+.remove-btn:hover {
+    color: #ff6600;
+}
+/* --- END BẢNG SẢN PHẨM --- */
+
+
+/* Tinh chỉnh Giá & Số lượng trong Bảng */
+.price {
+    color: #d00; 
     font-weight: bold;
 }
 
@@ -169,89 +183,183 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+    justify-content: center;
 }
 
 .quantity button {
-    background: #eee;
-    border: 1px solid #ccc;
-    width: 25px;
-    height: 25px;
+    background: rgb(117, 166, 240); 
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    width: 30px; 
+    height: 30px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.quantity button:hover {
+    background-color: #5d8ccf;
 }
 
 .quantity input {
-    width: 40px;
+    width: 45px;
+    height: 30px;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(117, 166, 240); 
+    border-radius: 3px;
 }
 
-.total {
-    font-weight: bold;
+/* Tinh chỉnh Tổng tiền từng sản phẩm */
+.total.red-price {
     color: #d00;
-    width: 100px;
-    text-align: right;
-}
-
-.remove {
-    cursor: pointer;
-    color: #999;
-    font-size: 18px;
-    margin-left: 10px;
-}
-
-/* CART SUMMARY */
-.cart-summary {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-    gap: 40px;
+    font-weight: 700;
+    font-size: 1.2em; 
 }
 
 
-.cart-item:hover{
-
-}
-.note, .summary-info {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    flex: 1;
-}
-
-textarea {
-    width: 100%;
-    height: 100px;
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    resize: none;
-    border-radius: 5px;
+/* CART SUMMARY  */
+/* Tổng bố cục */
+.order-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #fdfaf5;
+  padding: 30px 10px;
+  gap: 50px;
+  flex-wrap: wrap;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.total-price {
-    color: #d00;
-    font-size: 22px;
-    font-weight: bold;
+/* Ghi chú */
+.order-note {
+  flex: 1.5;
 }
-.btn-pay{
-    margin-top: 15px;
-    border: none;
+.order-note h3 {
+  font-size: 22px;
+  color: #2e2e2e;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
-.btn-pay >a {
-    text-decoration: none;
-    color: #fff;
-    padding: 10px 25px;
-    background-color:  rgb(117, 166, 240);
-    border-radius: 5px;
+.order-note textarea {
+  width: 100%;
+  height: 140px;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background: #f0f0f0;
+  font-size: 15px;
+  color: #333;
+  resize: none;
+  outline: none;
+}
+.order-note textarea::placeholder {
+  color: #888;
 }
 
+/* --- THÔNG TIN ĐƠN HÀNG (ĐÃ CẢI TIẾN) --- */
+.order-summary {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.order-summary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.order-summary h3 {
+  font-size: 22px;
+  color: rgb(117, 166, 240);
+  font-weight: 700;
+  margin-bottom: 18px;
+  border-bottom: 2px solid rgb(117, 166, 240);
+  padding-bottom: 8px;
+}
+
+.order-summary p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  margin: 12px 0;
+}
+
+.order-summary .total {
+  font-size: 28px;
+  font-weight: 800;
+  color: #e60000;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.order-summary .subtext {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+  background: #f8f8f8;
+  border-left: 3px solid rgb(117, 166, 240);
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+/* Nút thanh toán */
+.btn-pay {
+  display: block;
+  width: 50%;
+  background: rgb(117, 166, 240);
+  color: white;
+  text-align: center;
+  padding: 12px 0;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.btn-pay:hover {
+  background: #5b8dd8;
+  transform: scale(1.03);
+}
+
+/* Tiếp tục mua hàng */
 .continue {
-    display: block;
-    margin-top: 10px;
-    color: #d2691e;
-    text-decoration: none;
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #e67e22;
+  font-size: 15px;
+  text-align: left;
+  transition: color 0.2s;
 }
 
+.continue:hover {
+  color: #ff8c42;
+  text-decoration: underline;
+}
+
+
+/* Tùy chỉnh cho đơn vị tiền tệ "đ" (Đồng) */
+.price-unit {
+    font-size: 0.7em; 
+    vertical-align: super; 
+    margin-right: 2px; 
+    font-weight: bold;
+}
+
+.total-price-large {
+    font-size: 0.7em; 
+    vertical-align: super;
+    margin-right: 3px;
+    font-weight: bold;
+}
 /* FOOTER */
 .footer {
     margin-top: 50px;
