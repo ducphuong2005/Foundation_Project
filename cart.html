@@ -6,11 +6,9 @@
     <title>Cart - Happybook</title>
     <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
 </head>
 <body>
 
-    <!-- HEADER -->
     <header class="header">
         <div class="header-infor">
             <div class="infor">
@@ -24,7 +22,9 @@
             </div>
         </div>
         <div class="header-top">
-            <div class="logo">Happybook<span>.com</span></div>
+            <div class="logo">
+                <img src="/Anh/logo.jpg" alt="logo">
+            </div>
             <div class="search">
                 <input type="text" class="search-bar" placeholder="Tìm kiếm sản phẩm...">
                 <button class="btn-search">Search</button>
@@ -38,113 +38,130 @@
 
     <div class="home">
         <div class="div">
-            <a href="#">Home</a> | <a href="#">Cart (5)</a>
+            <a href="Foundation Project/index.html">Home</a> | <a href="#">Cart (5)</a>
         </div>
-        
     </div>
-    <!-- MAIN CONTENT -->
+    
     <main class="cart-container">
         <h1>Your Shopping Cart</h1>
         <p class="cart-note">You have <strong>5 items</strong> in your cart</p>
 
-        <div class="cart-items">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>Tên sách</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Loại bỏ</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td class="product-image"><img src="/Anh/biasach.jpg" alt="Xứ Mèo"></td>
+                    <td class="product-name">Xứ Mèo</td>
+                    <td>79,200<span class="price-unit">đ</span> <span class="old-price">88,000đ</span></td>
+                    <td>
+                        <div class="quantity">
+                            <button>-</button>
+                            <input type="text" value="1">
+                            <button>+</button>
+                        </div>
+                    </td>
+                    <td class="total red-price">79,200<span class="price-unit">đ</span></td>
+                    <td><div class="remove-btn">✕</div></td>
+                </tr>
 
-            <!-- Sản phẩm -->
-            <div class="cart-item">
-                <img src="/Anh/biasach.jpg" alt="Xứ Mèo">
-                <div class="item-info">
-                    <h3>Xứ Mèo</h3>
-                    <p class="price">79,200đ <span class="old-price">88,000đ</span></p>
-                </div>
-                <div class="quantity">
-                    <button>-</button>
-                    <input type="text" value="1">
-                    <button>+</button>
-                </div>
-                <div class="total">79,200đ</div>
-                <div class="remove">✕</div>
-            </div>
+                <tr>
+                    <td class="product-image"><img src="/Anh/biasach.jpg" alt="Việt Nam – Ăn Mặc Thong Dong"></td>
+                    <td class="product-name">Việt Nam – Ăn Mặc Thong Dong</td>
+                    <td>171,000<span class="price-unit">đ</span> <span class="old-price">190,000đ</span></td>
+                    <td>
+                        <div class="quantity">
+                            <button>-</button>
+                            <input type="text" value="1">
+                            <button>+</button>
+                        </div>
+                    </td>
+                    <td class="total red-price">171,000<span class="price-unit">đ</span></td>
+                    <td><div class="remove-btn">✕</div></td>
+                </tr>
 
-            <div class="cart-item">
-                <img src="/Anh/biasach.jpg" alt="Việt Nam – Ăn Mặc Thong Dong">
-                <div class="item-info">
-                    <h3>Việt Nam – Ăn Mặc Thong Dong</h3>
-                    <p class="price">171,000đ <span class="old-price">190,000đ</span></p>
-                </div>
-                <div class="quantity">
-                    <button>-</button>
-                    <input type="text" value="1">
-                    <button>+</button>
-                </div>
-                <div class="total">171,000đ</div>
-                <div class="remove">✕</div>
-            </div>
+                <tr>
+                    <td class="product-image"><img src="/Anh/biasach.jpg" alt="Thực Hành Dịch Tiếng Trung"></td>
+                    <td class="product-name">Thực Hành Dịch Tiếng Trung</td>
+                    <td>79,200<span class="price-unit">đ</span> <span class="old-price">88,000đ</span></td>
+                    <td>
+                        <div class="quantity">
+                            <button>-</button>
+                            <input type="text" value="1">
+                            <button>+</button>
+                        </div>
+                    </td>
+                    <td class="total red-price">79,200<span class="price-unit">đ</span></td>
+                    <td><div class="remove-btn">✕</div></td>
+                </tr>
 
-            <div class="cart-item">
-                <img src="/Anh/biasach.jpg" alt="Thực Hành Dịch Tiếng Trung">
-                <div class="item-info">
-                    <h3>Thực Hành Dịch Tiếng Trung</h3>
-                    <p class="price">79,200đ <span class="old-price">88,000đ</span></p>
-                </div>
-                <div class="quantity">
-                    <button>-</button>
-                    <input type="text" value="1">
-                    <button>+</button>
-                </div>
-                <div class="total">79,200đ</div>
-                <div class="remove">✕</div>
-            </div>
+                <tr>
+                    <td class="product-image"><img src="/Anh/biasach.jpg" alt="Tân Thanh"></td>
+                    <td class="product-name">Tân Thanh</td>
+                    <td>79,200<span class="price-unit">đ</span> <span class="old-price">88,000đ</span></td>
+                    <td>
+                        <div class="quantity">
+                            <button>-</button>
+                            <input type="text" value="1">
+                            <button>+</button>
+                        </div>
+                    </td>
+                    <td class="total red-price">79,200<span class="price-unit">đ</span></td>
+                    <td><div class="remove-btn">✕</div></td>
+                </tr>
 
-            <div class="cart-item">
-                <img src="/Anh/biasach.jpg" alt="Tân Thanh">
-                <div class="item-info">
-                    <h3>Tân Thanh</h3>
-                    <p class="price">79,200đ <span class="old-price">88,000đ</span></p>
-                </div>
-                <div class="quantity">
-                    <button>-</button>
-                    <input type="text" value="1">
-                    <button>+</button>
-                </div>
-                <div class="total">79,200đ</div>
-                <div class="remove">✕</div>
-            </div>
+                <tr>
+                    <td class="product-image"><img src="/Anh/biasach.jpg" alt="Ngôn Ngữ Trong Thể Thao Việt - Hán"></td>
+                    <td class="product-name">Ngôn Ngữ Trong Thể Thao Việt - Hán</td>
+                    <td>108,000<span class="price-unit">đ</span> <span class="old-price">120,000đ</span></td>
+                    <td>
+                        <div class="quantity">
+                            <button>-</button>
+                            <input type="text" value="1">
+                            <button>+</button>
+                        </div>
+                    </td>
+                    <td class="total red-price">108,000<span class="price-unit">đ</span></td>
+                    <td><div class="remove-btn">✕</div></td>
+                </tr>
 
-            <div class="cart-item">
-                <img src="/Anh/biasach.jpg" alt="Ngôn Ngữ Trong Thể Thao Việt - Hán">
-                <div class="item-info">
-                    <h3>Ngôn Ngữ Trong Thể Thao Việt - Hán</h3>
-                    <p class="price">108,000đ <span class="old-price">120,000đ</span></p>
-                </div>
-                <div class="quantity">
-                    <button>-</button>
-                    <input type="text" value="1">
-                    <button>+</button>
-                </div>
-                <div class="total">108,000đ</div>
-                <div class="remove">✕</div>
-            </div>
-        </div>
+            </tbody>
+        </table>
 
-        <!-- Tổng tiền -->
-        <div class="cart-summary">
-            <div class="note">
-                <h3>Order Note</h3>
-                <textarea placeholder="Add a note..."></textarea>
-            </div>
-            <div class="summary-info">
-                <h3>Order Summary</h3>
-                <p><strong>Total:  </strong><span class="total-price">516,600đ</span></p>
-                <button class="btn-pay"><a href="checkout.html">CHECKOUT</a></button>
-                <a href="#" class="continue">← Continue Shopping</a>
-            </div>
-        </div>
+
+        <div class="order-container">
+  <div class="order-note">
+    <h3>Ghi chú đơn hàng</h3>
+    <textarea placeholder="Ghi chú"></textarea>
+  </div>
+
+  <div class="order-summary">
+    <h3>Thông tin đơn hàng</h3>
+    <p>Tổng tiền: <span class="total">316,000đ</span></p>
+    <p class="subtext">Phí vận chuyển sẽ được tính ở trang thanh toán.<br>
+    Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
+  
+    <a href="checkout.html" class="btn-pay">THANH TOÁN</a> <br>
+    <a href="#" class="continue">↩ Tiếp tục mua hàng</a>
+   
+  </div>
+</div>
+
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
-        <p>© 2025 Happybook Clone - Designed by Group 2</p>
+        <p>© 2025 Happybook Clone - Designed by Group 3</p>
     </footer>
 
 </body>
-</html>
+</html>    
+        
