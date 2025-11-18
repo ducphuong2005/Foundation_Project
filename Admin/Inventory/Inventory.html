@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Order</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div>
+            <img src="../logo.png" height="45px" >
+        </div>
+        <ul class="menu">
+            <li><i class="fa fa-chart-bar"></i> <a href="../dashboard/index.html">Dashboard</a></li>
+            <li><i class="fa-solid fa-box"></i>
+              <span><a href="../ManageOrder/manageOrderAdmin.html">Manage Order</a></span></li>
+            <li><i class="fa-solid fa-book-medical"></i>
+              <span><a href="../FP-AddBook/addbook.html">Add Book</a></span></li>
+            <li><i class="fa-solid fa-pen-to-square"></i>
+              <span><a href="../EditBook.html">Edit book</a></span></li>
+            <li><i class="fa-solid fa-warehouse"></i>
+              <span><a href="../ManageInventory.html">Manage Inventory</a></span></li>
+            <li><i class="fa fa-comment"></i> Feedback</li>
+            <li><i class="fa fa-gear"></i> Settings</li>
+            <li><i class="fa fa-circle-question"></i> Help Desk</li>
+            <li class="logout"><i class="fa fa-right-from-bracket"></i> Log out</li>
+          </ul>
+      </div>
+      
+      <div class="main">
+        <header>
+          <h1> <i class="fa-solid fa-boxes-stacked"></i> Manage Order </h1>
+        </header>
+
+        <div class="content-wrapper">
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search books by title, author, or ISBN...">
+                <button class="btn btn-primary">
+                    <i class="fa-solid fa-search"></i> Search
+                </button>
+            </div>
+
+            <div class="inventory-table-container">
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Books</th>
+                            <th>Author</th>
+                            <th>ISBN</th>
+                            <th>Price (VND)</th>
+                            <th>Stock (Now)</th>
+                            <th>Activity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="book-details">
+                                <img src="biasach.jpg" alt="Bìa sách" class="book-cover">
+                                <div>
+                                    <strong>Đắc Nhân Tâm</strong>
+                                    <small>Loại: Sách in</small>
+                                </div>
+                            </td>
+                            <td>Dale Carnegie</td>
+                            <td>978-0671027032</td>
+                            <td>120,000</td>
+                            <td>
+                                <input type="number" class="stock-input" value="150">
+                            </td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="btn btn-edit"><i class="fa-solid fa-pencil"></i> Edit</button>
+                                    <button class="btn btn-delete"><i class="fa-solid fa-trash"></i> Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="book-details">
+                                <img src="biasach.jpg" alt="Bìa sách" class="book-cover">
+                                <div>
+                                    <strong>Nhà Giả Kim</strong>
+                                    <small>Loại: E-book</small>
+                                </div>
+                            </td>
+                            <td>Paulo Coelho</td>
+                            <td>978-0062315007</td>
+                            <td>89,000</td>
+                            <td>
+                                <input type="number" class="stock-input" value="500">
+                            </td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="btn btn-edit"><i class="fa-solid fa-pencil"></i> Sửa</button>
+                                    <button class="btn btn-delete"><i class="fa-solid fa-trash"></i> Xóa</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="book-details">
+                                <img src="biasach.jpg" alt="Bìa sách" class="book-cover">
+                                <div>
+                                    <strong>Lược Sử Loài Người</strong>
+                                    <small>Loại: Sách in</small>
+                                </div>
+                            </td>
+                            <td>Yuval Noah Harari</td>
+                            <td>978-0062316097</td>
+                            <td>250,000</td>
+                            <td>
+                                <input type="number" class="stock-input" value="85">
+                            </td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="btn btn-edit"><i class="fa-solid fa-pencil"></i> Sửa</button>
+                                    <button class="btn btn-delete"><i class="fa-solid fa-trash"></i> Xóa</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="global-actions">
+                <button class="btn btn-save-all">
+                    <i class="fa-solid fa-save"></i> Lưu tất cả thay đổi
+                </button>
+            </div>
+        </div>
+
+      </div>
+
+</body>
+</html>

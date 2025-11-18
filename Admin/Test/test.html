@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Inventory</title>
+  <link rel="stylesheet" href="test.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="../logo.png" height="45px">
+    <ul class="menu">
+      <li><i class="fa fa-chart-bar"></i> <a href="../dashboard/index.html">Dashboard</a></li>
+      <li><i class="fa-solid fa-box"></i> Manage Order</li>
+      <li><i class="fa-solid fa-warehouse"></i> Manage Inventory</li>
+      <li class="logout"><i class="fa fa-right-from-bracket"></i> Log out</li>
+    </ul>
+  </div>
+
+  <!-- Main content -->
+  <div class="main">
+    <header>
+      <h1>Manage Inventory</h1>
+      <button class="btn-primary" onclick="openAddModal()">+ Add Product</button>
+    </header>
+
+    <!-- Summary cards -->
+    <div class="cards">
+      <div class="card">
+        <h3>Total Items</h3>
+        <p id="totalItems" class="value">0</p>
+      </div>
+      <div class="card">
+        <h3>Low Stock</h3>
+        <p id="lowStock" class="value" style="color: #f4b400;">0</p>
+      </div>
+      <div class="card">
+        <h3>Out of Stock</h3>
+        <p id="outStock" class="value" style="color: #dc3545;">0</p>
+      </div>
+    </div>
+
+    <!-- Inventory Table -->
+    <div class="orders">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="inventoryTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal Add/Edit -->
+  <div id="inventoryModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Add Product</h2>
+      <label>Name</label>
+      <input type="text" id="pName">
+      <label>Category</label>
+      <input type="text" id="pCategory">
+      <label>Stock</label>
+      <input type="number" id="pStock">
+      <label>Price</label>
+      <input type="number" id="pPrice">
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" onclick="saveProduct()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="test.js"></script>
+</body>
+</html>

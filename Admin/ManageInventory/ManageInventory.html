@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Inventory</title>
+  <link rel="stylesheet" href="styleInventory.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <div class="sidebar">
+        <div>
+            <img src="../logo.png" height="45px" >
+        </div>
+        <ul class="menu">
+          <li><i class="fa fa-chart-bar"></i> <a href="../dashboard/index.html">Dashboard</a></li>
+          <li><i class="fa-solid fa-box"></i>
+            <span><a href="#">Manage Order</a></span></li>
+          <li><i class="fa-solid fa-book-medical"></i>
+            <span><a href="../FP-AddBook/addbook.html">Add Book</a></span></li>
+          <li><i class="fa-solid fa-pen-to-square"></i>
+            <span><a href="../EditBook.html">Edit book</a></span></li>
+          <li><i class="fa-solid fa-warehouse"></i>
+            <span><a href="../ManageInventory/ManageInventory.html">Manage Inventory</a></span></li>
+          <li><i class="fa fa-comment"></i> Feedback</li>
+          <li><i class="fa fa-gear"></i> Settings</li>
+          <li><i class="fa fa-circle-question"></i> Help Desk</li>
+          <li class="logout"><i class="fa fa-right-from-bracket"></i> Log out</li>
+        </ul>
+      </div>
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <header>
+            <h1> Manage Order </h1>
+          </header>
+
+        <!-- SUMMARY CARDS -->
+        <div class="cards">
+            <div class="card">
+                <h3 class="text-gray-600">Total Items</h3>
+                <p id="totalItems" class="text-2xl font-bold mt-2">0</p>
+            </div>
+            <div class="card">
+                <h3 class="text-gray-600">Low Stock</h3>
+                <p id="lowStock" class="text-2xl font-bold mt-2 text-yellow-500">0</p>
+            </div>
+            <div class="card">
+                <h3 class="text-gray-600">Out of Stock</h3>
+                <p id="outStock" class="text-2xl font-bold mt-2 text-red-500">0</p>
+            </div>
+            <div class="card">
+                <h3 class="text-gray-600">Last Update</h3>
+                <p id="lastUpdate" class="text-lg font-semibold mt-2 text-blue-500">Today</p>
+            </div>
+        </div>
+
+        <!-- ACTION BAR -->
+        <h2 style="margin:15px;">Inventory List</h2>
+        <div class="search-bar">
+            <input type="text" placeholder="Search books by title, author, or ISBN...">
+                <button class="btn btn-primary">
+                    <i class="fa-solid fa-search"></i> Search
+                </button>
+            <button class="btn-primary" onclick="openAddModal()">+ Add Product</button>
+        </div>
+
+        <!-- INVENTORY TABLE -->
+        <div class="card">
+            <table class="min-w-full">
+                <thead>
+                    <tr class="border-b font-semibold text-gray-500">
+                        <th class="py-3 text-left">Name</th>
+                        <th class="py-3 text-left">Category</th>
+                        <th class="py-3 text-left">Stock</th>
+                        <th class="py-3 text-left">Price</th>
+                        <th class="py-3 text-left">Status</th>
+                        <th class="py-3 text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTable"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- ADD / EDIT MODAL -->
+    <div id="inventoryModal" class="fixed inset-0 bg-black bg-opacity-40 hidden flex justify-center items-center">
+        <div class="card w-96">
+            <h2 id="modalTitle" class="text-xl font-bold mb-4">Add Product</h2>
+
+            <label class="block mb-2">Name</label>
+            <input id="pName" type="text" class="w-full border p-2 rounded mb-4">
+
+            <label class="block mb-2">Category</label>
+            <input id="pCategory" type="text" class="w-full border p-2 rounded mb-4">
+
+            <label class="block mb-2">Stock</label>
+            <input id="pStock" type="number" class="w-full border p-2 rounded mb-4">
+
+            <label class="block mb-2">Price</label>
+            <input id="pPrice" type="number" class="w-full border p-2 rounded mb-4">
+
+            <div class="flex justify-end space-x-4 mt-4">
+                <button onclick="closeModal()" class="text-gray-500">Cancel</button>
+                <button onclick="saveProduct()" class="btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+    <div id="inventoryModal" class="hidden flex justify-center items-center">
+
+    <script src="script.js"></script>
+
+</body>
+</html>

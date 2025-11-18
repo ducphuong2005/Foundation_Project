@@ -1,0 +1,226 @@
+* {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+body {
+    display: flex;
+    background: linear-gradient(to bottom right, #f0f6ff, #e8f1ff);
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+}
+.sidebar {
+    width: 230px;
+    background: linear-gradient(180deg, rgb(117, 166, 240), rgb(86, 140, 230));
+    border-right: none;
+    height: 100vh;
+    position: fixed;
+    padding: 20px;
+    color: white;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+.logo {font-weight: 700; font-size: 22px; color: #ff4500; margin-bottom: 20px;}
+.menu {list-style: none;}
+.menu li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.menu li.active, .menu li:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    transform: translateX(4px);
+    border-radius: 8px;
+    padding-left: 10px;
+}
+.logout {margin-top: 40px; color: #d33;}
+
+.main {
+  margin-left: 250px;
+  padding: 30px;
+  width: calc(100% - 250px);
+}
+header {
+    display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 15px 20px;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(117, 166, 240, 0.15);
+}
+
+/* === BẮT ĐẦU PHẦN CODE THÊM VÀO === */
+
+/* Tùy chỉnh icon trong header có sẵn */
+.main header h1 i {
+    font-size: 24px;
+    margin-right: 10px;
+    color: rgb(86, 140, 230); /* Dùng màu xanh của sidebar */
+}
+
+/* (Phần màu xanh lá) - Đường dẫn */
+.breadcrumbs {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+.breadcrumbs a {
+    color: rgb(86, 140, 230);
+    text-decoration: none;
+}
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+.breadcrumbs span {
+    color: #6c757d;
+}
+
+/* Khung trắng chứa nội dung (bên dưới header) */
+.content-wrapper {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(117, 166, 240, 0.15);
+    margin-top: 20px;
+}
+.content-description {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+/* Thanh tìm kiếm */
+.search-bar { 
+    display: flex; 
+    gap: 1rem; 
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+.search-bar input[type="text"] { 
+    flex-grow: 1; 
+    padding: 0.75rem 1rem; 
+    font-size: 1rem; 
+    border: 1px solid #dee2e6;
+    border-radius: 6px; 
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- Các nút bấm --- */
+.btn {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+.btn-primary { 
+    background-color: rgb(86, 140, 230); 
+    color: white; 
+}
+.btn-primary:hover { 
+    background-color: rgb(60, 100, 180); 
+}
+
+/* (Phần màu đỏ) - Nút Sửa / Xóa */
+.btn-edit { 
+    background-color: #ffc107; 
+    color: #333; 
+}
+.btn-edit:hover { 
+    background-color: #e0a800; 
+}
+.btn-delete { 
+    background-color: #dc3545; 
+    color: white; 
+}
+.btn-delete:hover { 
+    background-color: #c82333; 
+}
+.action-buttons-cell { 
+    display: flex; 
+    gap: 0.5rem; 
+}
+
+/* --- Bảng kho hàng --- */
+.inventory-table-container { 
+    width: 100%; 
+    overflow-x: auto; /* Thêm cuộn ngang nếu bảng quá rộng */
+}
+.inventory-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+.inventory-table th, .inventory-table td { 
+    padding: 1rem 1rem; 
+    text-align: left; 
+    vertical-align: middle; 
+    border-bottom: 1px solid #dee2e6;
+    white-space: nowrap; /* Ngăn text trong bảng xuống dòng */
+}
+.inventory-table thead th { 
+    background-color: #f8f9fa; 
+    font-weight: 600; 
+    padding: 1rem;
+}
+.inventory-table tbody tr:nth-of-type(even) { 
+    background-color: #f8f9fa; 
+}
+
+.book-details { 
+    display: flex; 
+    align-items: center; 
+    gap: 1rem; 
+}
+.book-cover { 
+    width: 40px; 
+    height: 60px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+}
+.book-details div { 
+    display: flex; 
+    flex-direction: column; 
+}
+.book-details small { 
+    color: #6c757d; 
+    font-size: 0.85rem; 
+}
+
+.stock-input { 
+    width: 80px; 
+    padding: 0.5rem; 
+    font-size: 1rem; 
+    border: 1px solid #dee2e6;
+    border-radius: 6px; 
+    text-align: center; 
+    font-family: 'Poppins', sans-serif;
+}
+.stock-input:focus { 
+    outline: none; 
+    border-color: rgb(86, 140, 230); 
+}
+
+/* (Phần màu vàng) - Nút lưu tổng */
+.global-actions {
+    padding-top: 20px;
+    text-align: right;
+}
+.btn-save-all {
+    background-color: #28a745;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.btn-save-all:hover { 
+    background-color: #218838; 
+}
+
+/* === KẾT THÚC PHẦN CODE THÊM VÀO === */
