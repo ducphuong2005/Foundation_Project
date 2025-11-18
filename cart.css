@@ -25,9 +25,44 @@ body {
     padding: 10px 100px;
     margin-bottom: 25px;
 }
+/* Logo */
 .header-top img{
     width: 300px;
+    border-radius: 10px;
 }
+.logo img {
+    transition: 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+}
+.logo img {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+.logo img {
+    transition: 0.3s;
+}
+
+.logo img:hover {
+    filter: brightness(1.25) drop-shadow(0 0 10px #66aaff);
+}
+.logo img {
+    transition: 0.3s ease;
+}
+
+.logo img:hover {
+    transform: rotate(-3deg) scale(1.05);
+}
+
+
 .infor{
     display: flex;
 }
@@ -49,15 +84,6 @@ body {
     padding-bottom: 25px;
 }
 
-.logo {
-    font-size: 35px;
-    font-weight: bold;
-    color: rgb(117, 166, 240);
-}
-
-.logo span {
-    color: #ff6600;
-}
  
 .suport{
     text-align: center;
@@ -368,4 +394,18 @@ body {
     padding: 15px;
     color: #666;
     font-size: 14px;
+}
+/* Ẩn nút tăng/giảm của input number trên Chrome, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ẩn nút tăng/giảm trên Firefox */
+/* input[type=number] {
+    -moz-appearance: textfield;
+} */
+.quantity-input {
+    text-align: center;
 }
