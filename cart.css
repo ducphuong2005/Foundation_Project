@@ -1,97 +1,411 @@
-// Dữ liệu mẫu — bạn có thể thay bằng localStorage hoặc API
-let cart = [
-    { name: "Xứ Mèo", price: 79200, quantity: 1, img: "../public/Anh/biasach.jpg" },
-    { name: "Việt Nam – Ăn Mặc Thong Dong", price: 171000, quantity: 1, img: "../public/Anh/biasach.jpg" },
-    { name: "Thực Hành Dịch Tiếng Trung", price: 79200, quantity: 1, img: "../public/Anh/biasach.jpg" },
-    { name: "Tân Thanh", price: 79200, quantity: 1, img: "../public/Anh/biasach.jpg" },
-    { name: "Ngôn Ngữ Trong Thể Thao Việt - Hán", price: 108000, quantity: 1, img: "../public/Anh/biasach.jpg" }
-];
-
-// ------- TÍNH TỔNG SỐ LƯỢNG TẤT CẢ SẢN PHẨM -------
-function getTotalItems() {
-    return cart.reduce((sum, item) => sum + item.quantity, 0);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-// ------- HIỂN THỊ GIỎ HÀNG -------
-function loadCart() {
-    let tbody = document.getElementById("cart-body");
-    tbody.innerHTML = "";
-    let totalAll = 0;
-
-    cart.forEach((item, index) => {
-        let totalPrice = item.quantity * item.price;
-        totalAll += totalPrice;
-
-        let row = `
-        <tr>
-            <td class="product-image"><img src="${item.img}" /></td>
-            <td class="product-name">${item.name}</td>
-            <td>${item.price.toLocaleString()}đ</td>
-
-            <td>
-                <div class="quantity">
-                    <button onclick="changeQtyButton(${index}, -1)">-</button>
-
-                    <input type="number" min="1" 
-                        value="${item.quantity}"
-                        onfocus="this.select()"
-                        oninput="changeQtyInput(${index}, this.value)"
-                    >
-
-                    <button onclick="changeQtyButton(${index}, 1)">+</button>
-                </div>
-            </td>
-
-            <td class="total red-price">${totalPrice.toLocaleString()}đ</td>
-            <td><div class="remove-btn" onclick="removeItem(${index})">✕</div></td>
-        </tr>`;
-
-        tbody.innerHTML += row;
-    });
-
-    document.getElementById("cart-total").textContent = totalAll.toLocaleString() + "đ";
-    document.getElementById("total-items").textContent = getTotalItems() + " items";
+body {
+    background-color: #faf8f5;
+    color: #333;
 }
 
-// ------- TĂNG / GIẢM SỐ LƯỢNG -------
-function changeQty(index, num) {
-    cart[index].quantity += num;
-
-    if (cart[index].quantity < 1) {
-        cart[index].quantity = 1;
-    }
-
-    loadCart();
+/* HEADER */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.header-infor{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:rgb(117, 166, 240);
+    color:#fff ;
+    width: 100%;
+    padding: 10px 100px;
+    margin-bottom: 25px;
+}
+/* Logo */
+.header-top img{
+    width: 300px;
+    border-radius: 10px;
+}
+.logo img {
+    transition: 0.3s ease;
 }
 
-// ------- XOÁ SẢN PHẨM -------
-function removeItem(index) {
-    if (confirm("Bạn có chắc muốn xóa sản phẩm này?")) {
-        cart.splice(index, 1);
-        loadCart();
-    }
+.logo img:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+}
+.logo img {
+    animation: float 3s ease-in-out infinite;
 }
 
-// ------- KHỞI CHẠY -------
-loadCart();
-function changeQtyButton(index, amount) {
-    cart[index].quantity += amount;
-
-    if (cart[index].quantity < 1) {
-        cart[index].quantity = 1;
-    }
-
-    loadCart();
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
 }
-function changeQtyInput(index, value) {
-    value = parseInt(value);
-
-    if (isNaN(value) || value < 1) {
-        value = 1;
-    }
-
-    cart[index].quantity = value;
-
-    loadCart();
+.logo img {
+    transition: 0.3s;
 }
 
+.logo img:hover {
+    filter: brightness(1.25) drop-shadow(0 0 10px #66aaff);
+}
+.logo img {
+    transition: 0.3s ease;
+}
+
+.logo img:hover {
+    transform: rotate(-3deg) scale(1.05);
+}
+
+
+.infor{
+    display: flex;
+}
+.infor a{
+    padding-right: 20px;
+    text-decoration: none;
+    color:#fff ;
+}
+.account a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+}
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 100px;
+    padding-bottom: 25px;
+}
+
+ 
+.suport{
+    text-align: center;
+}
+.search{
+    width: 700px;
+}
+.search-bar {
+    width:600px ;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.btn-search {
+    padding: 8px 15px;
+    background-color: rgb(117, 166, 240);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.home{
+    color: rgb(103, 100, 100);
+    background-color: whitesmoke;
+}
+.home .div{
+    padding: 5px 0px 5px 100px;
+}
+.home a{
+    text-decoration: none;
+    color: #666;
+    padding: 5px;
+}
+.home a:hover{
+    background-color: rgb(117, 166, 240);
+    color: whitesmoke;
+}
+/* CART MAIN */
+.cart-container {
+    padding: 30px 80px;
+}
+
+.cart-container h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.cart-note {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+/* --- BẢNG SẢN PHẨM (Mới) --- */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    border-radius: 8px;
+}
+
+.cart-table th, .cart-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.cart-table th {
+    background-color: rgb(117, 166, 240);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.cart-table tbody tr:hover {
+    background-color: #f7f7f7;
+}
+
+.product-name {
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-image img {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.remove-btn {
+    cursor: pointer;
+    color: #d00;
+    font-size: 1.2em;
+    transition: color 0.2s;
+}
+.remove-btn:hover {
+    color: #ff6600;
+}
+/* --- END BẢNG SẢN PHẨM --- */
+
+
+/* Tinh chỉnh Giá & Số lượng trong Bảng */
+.price {
+    color: #d00; 
+    font-weight: bold;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.quantity button {
+    background: rgb(117, 166, 240); 
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    width: 30px; 
+    height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.quantity button:hover {
+    background-color: #5d8ccf;
+}
+
+.quantity input {
+    width: 45px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid rgb(117, 166, 240); 
+    border-radius: 3px;
+}
+
+/* Tinh chỉnh Tổng tiền từng sản phẩm */
+.total.red-price {
+    color: #d00;
+    font-weight: 700;
+    font-size: 1.2em; 
+}
+
+
+/* CART SUMMARY  */
+/* Tổng bố cục */
+.order-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #fdfaf5;
+  padding: 30px 10px;
+  gap: 50px;
+  flex-wrap: wrap;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Ghi chú */
+.order-note {
+  flex: 1.5;
+}
+.order-note h3 {
+  font-size: 22px;
+  color: #2e2e2e;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.order-note textarea {
+  width: 100%;
+  height: 140px;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background: #f0f0f0;
+  font-size: 15px;
+  color: #333;
+  resize: none;
+  outline: none;
+}
+.order-note textarea::placeholder {
+  color: #888;
+}
+
+/* --- THÔNG TIN ĐƠN HÀNG (ĐÃ CẢI TIẾN) --- */
+.order-summary {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.order-summary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.order-summary h3 {
+  font-size: 22px;
+  color: rgb(117, 166, 240);
+  font-weight: 700;
+  margin-bottom: 18px;
+  border-bottom: 2px solid rgb(117, 166, 240);
+  padding-bottom: 8px;
+}
+
+.order-summary p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  margin: 12px 0;
+}
+
+.order-summary .total {
+  font-size: 28px;
+  font-weight: 800;
+  color: #e60000;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.order-summary .subtext {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+  background: #f8f8f8;
+  border-left: 3px solid rgb(117, 166, 240);
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+/* Nút thanh toán */
+.btn-pay {
+  display: block;
+  width: 50%;
+  background: rgb(117, 166, 240);
+  color: white;
+  text-align: center;
+  padding: 12px 0;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.btn-pay:hover {
+  background: #5b8dd8;
+  transform: scale(1.03);
+}
+
+/* Tiếp tục mua hàng */
+.continue {
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #e67e22;
+  font-size: 15px;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.continue:hover {
+  color: #ff8c42;
+  text-decoration: underline;
+}
+
+
+/* Tùy chỉnh cho đơn vị tiền tệ "đ" (Đồng) */
+.price-unit {
+    font-size: 0.7em; 
+    vertical-align: super; 
+    margin-right: 2px; 
+    font-weight: bold;
+}
+
+.total-price-large {
+    font-size: 0.7em; 
+    vertical-align: super;
+    margin-right: 3px;
+    font-weight: bold;
+}
+/* FOOTER */
+.footer {
+    margin-top: 50px;
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 15px;
+    color: #666;
+    font-size: 14px;
+}
+/* Ẩn nút tăng/giảm của input number trên Chrome, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ẩn nút tăng/giảm trên Firefox */
+/* input[type=number] {
+    -moz-appearance: textfield;
+} */
+.quantity-input {
+    text-align: center;
+}
