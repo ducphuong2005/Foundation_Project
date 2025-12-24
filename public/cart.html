@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - HappyBook</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="header-infor">
+        <div class="infor">
+            <a class="bi bi-telephone-fill" href="#">0123 456 789</a>
+            <a class="bi bi-envelope-fill" href="#">contact@Happybook.com</a>
+            <a class="bi bi-geo-alt-fill" href="#">36 Minh Khai, Cau Dien, Ha Noi</a>
+        </div>
+        <div class="account"><a href="#">ACCOUNT</a><a href="#">LOG OUT</a></div>
+    </div>
+
+    <div class="header-top">
+        <div class="logo"><img src="./images/logo.png" alt="logo"></div>
+        <div class="search">
+            <input type="text" class="search-bar" placeholder="Search for products...">
+            <button class="btn-search">Search</button>
+        </div>
+        <div class="suport">
+            <span class="bi bi-headset"> Customer Support: <br>  
+            <strong style="color: #d00;">0987 654 321</strong></span>
+        </div>
+    </div>
+</header>
+
+<div class="home">
+    <div class="div">
+        <a href="home.html">Home</a> | <a href="#">Cart</a>
+    </div>
+</div>
+
+<main class="cart-container">
+    <h1>Your Shopping Cart</h1>
+    <p class="cart-note">You have <strong id="cart-total-items">0</strong> items in your cart</p>
+
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Book Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody class="cart-items">
+        </tbody>
+    </table>
+
+    <div class="cart-summary">
+        <div class="cart-note-box">
+            <h3>Order Notes</h3>
+            <textarea placeholder="Order notes..."></textarea>
+        </div>
+
+        <div class="cart-total-box">
+            <h3>Order Summary</h3>
+            <p>Total: <span class="cart-total">0đ</span></p>
+            <p class="subtext">Shipping fees will be calculated at checkout.<br>
+            You can also apply discount codes at checkout.</p>
+
+            <a href="checkout.html" class="btn-pay">CHECKOUT</a>
+            <a href="home.html" class="continue">↩ Continue Shopping</a>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>© 2025 HappyBook Clone - Designed by Group 3</p>
+</footer>
+
+<script>
+// =========================
+// Cart JS Inline (Cập nhật input editable)
+// =========================
+
+async function loadCart() {
+    const list = document.querySelector(".cart-items");
+    const totalEl = document.querySelector(".cart-total");
+    const totalItemsEl = document.getElementById("cart-total-items");
+
+    if (!list) return;
+
+    const res = await fetch("/api/cart");
+    const cart = await res.json();
+
+    list.innerHTML = "";
+    let total = 0;
+
+    for (let item of cart) {
+        const pRes = await fetch(`/api/product/${item.id}`);
+        const p = await pRes.json();
+
+        const subtotal = p.priceNew * item.qty;
+        total += subtotal;
+
+        list.innerHTML += `
+            <tr data-id="${item.id}" data-price="${p.priceNew}">
+                <td class="cart-product-img"><img src="${p.image}" width="60"></td>
+                <td class="cart-product-title">${p.title}</td>
+                <td class="cart-product-price">${p.priceNew.toLocaleString()}đ</td>
+                <td class="cart-quantity">
+                    <button onclick="changeQty(${item.id}, -1)">-</button>
+                    <input type="number" value="${item.qty}" min="1" data-id="${item.id}">
+                    <button onclick="changeQty(${item.id}, 1)">+</button>
+                </td>
+                <td class="cart-product-subtotal">${subtotal.toLocaleString()}đ</td>
+                <td><span class="remove-btn" onclick="removeItem(${item.id})">✕</span></td>
+            </tr>
+        `;
+    }
+
+    totalEl.innerText = total.toLocaleString() + "đ";
+    totalItemsEl.innerText = cart.length;
+}
+
+async function changeQty(id, diff) {
+    const row = document.querySelector(`tr[data-id="${id}"]`);
+    if (!row) return;
+
+    const input = row.querySelector("input[type='number']");
+    const price = parseFloat(row.dataset.price);
+
+    let currentQty = parseInt(input.value) || 1;
+    let newQty = currentQty + diff;
+
+    if (newQty < 1) {
+        newQty = 1;
+        input.value = 1;
+        return;
+    }
+
+    input.value = newQty;
+    row.querySelector(".cart-product-subtotal").innerText = (price * newQty).toLocaleString() + "đ";
+
+    try {
+        const res = await fetch("/api/cart/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id, qty: diff })
+        });
+
+        if (!res.ok) throw new Error("Server error");
+
+        let total = 0;
+        document.querySelectorAll(".cart-items tr").forEach(r => {
+            const p = parseFloat(r.dataset.price) || 0;
+            const q = parseInt(r.querySelector("input").value) || 1;
+            total += p * q;
+        });
+
+        document.querySelector(".cart-total").innerText = total.toLocaleString() + "đ";
+
+    } catch (err) {
+        console.error("Error updating cart:", err);
+        alert("Connection error! Reloading cart...");
+        loadCart();
+    }
+}
+
+async function removeItem(id) {
+    if (!confirm("Remove this item from the cart?")) return;
+
+    const row = document.querySelector(`tr[data-id="${id}"]`);
+    if (!row) return;
+
+    try {
+        const res = await fetch("/api/cart/remove", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id })
+        });
+
+        if (!res.ok) throw new Error("Failed to remove");
+
+        row.remove();
+
+        let total = 0;
+        document.querySelectorAll(".cart-items tr").forEach(r => {
+            const price = parseFloat(r.dataset.price) || 0;
+            const qty = parseInt(r.querySelector("input[type='number']")?.value) || 1;
+            total += price * qty;
+        });
+
+        document.querySelector(".cart-total").innerText = total.toLocaleString() + "đ";
+        document.getElementById("cart-total-items").innerText = document.querySelectorAll(".cart-items tr").length;
+
+        if (document.querySelectorAll(".cart-items tr").length === 0) {
+            document.querySelector(".cart-items").innerHTML = `
+                <tr>
+                    <td colspan="6" style="text-align:center; padding:60px 20px; color:#999; font-size:1.1rem;">
+                        Your cart is empty<br><br>
+                        <a href="home.html" style="color:#007bff; text-decoration:underline;">Continue Shopping</a>
+                    </td>
+                </tr>
+            `;
+            document.querySelector(".cart-total").innerText = "0đ";
+        }
+
+    } catch (err) {
+        console.error(err);
+        alert("Error removing item! Reloading cart...");
+        loadCart();
+    }
+}
+
+document.addEventListener("focusin", e => {
+    if (e.target.tagName === "INPUT" && e.target.closest(".cart-quantity")) {
+        e.target.select();
+    }
+});
+
+document.addEventListener("change", async e => {
+    const input = e.target;
+    if (input.tagName === "INPUT" && input.closest(".cart-quantity")) {
+        let qty = parseInt(input.value);
+        if (isNaN(qty) || qty < 1) qty = 1;
+        input.value = qty;
+
+        const row = input.closest("tr");
+        const id = parseInt(row.dataset.id);
+        const price = parseFloat(row.dataset.price);
+
+        try {
+            await fetch("/api/cart/set", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id, qty })
+            });
+
+            row.querySelector(".cart-product-subtotal").innerText = (price * qty).toLocaleString() + "đ";
+
+            let total = 0;
+            document.querySelectorAll(".cart-items tr").forEach(r => {  
+                const p = parseFloat(r.dataset.price);
+                const q = parseInt(r.querySelector("input").value);
+                total += p * q;
+            });
+            document.querySelector(".cart-total").innerText = total.toLocaleString() + "đ";
+            document.getElementById("cart-total-items").innerText = document.querySelectorAll(".cart-items tr").length;
+        } catch (err) {
+            console.error(err);
+            alert("Update failed, please try again!");
+        }
+    }
+});
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Enter" && e.target.tagName === "INPUT" && e.target.closest(".cart-quantity")) {
+        e.target.blur();
+    }
+});
+
+async function syncCartToServer() {
+    const rows = document.querySelectorAll(".cart-items tr");
+    for (let row of rows) {
+        const input = row.querySelector("input");
+        input.blur();
+        const id = parseInt(row.dataset.id);
+        const qty = parseInt(input.value);
+        await fetch("/api/cart/set", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({ id, qty })
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadCart();
+
+    const btnPay = document.querySelector(".btn-pay");
+    if (btnPay) {
+        btnPay.addEventListener("click", async (e) => {
+            e.preventDefault();
+            await syncCartToServer();
+            window.location.href = "checkout.html";
+        });
+    }
+});
+
+</script>
+
+</body>
+</html>

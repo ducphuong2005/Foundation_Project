@@ -1,0 +1,224 @@
+[
+  {
+    "email": "admin@happybook.com",
+    "password": "123456",
+    "name": "Admin HahaBook",
+    "cart": [
+      {
+        "id": 1,
+        "qty": 2
+      },
+      {
+        "id": 2,
+        "qty": 1
+      }
+    ],
+    "history": [],
+    "lastCategory": ""
+  },
+  {
+    "email": "user@gmail.com",
+    "password": "654321",
+    "name": "Nguyễn A",
+    "cart": [
+      {
+        "id": 3,
+        "qty": 1
+      },
+      {
+        "id": 4,
+        "qty": 1
+      },
+      {
+        "id": 6,
+        "qty": 2
+      }
+    ],
+    "history": [],
+    "lastCategory": "",
+    "orders": [
+      {
+        "id": "HP251202002",
+        "date": "12:02:33 2/12/2025",
+        "items": [
+          {
+            "id": 1,
+            "qty": 1
+          }
+        ],
+        "total": 171000,
+        "status": "Completed"
+      }
+    ]
+  },
+  {
+    "name": "Phương Đỗ",
+    "email": "123@gmail.com",
+    "password": "abc123!@#",
+    "cart": [],
+    "history": [],
+    "lastCategory": ""
+  },
+  {
+    "name": "phong",
+    "email": "ancuc@gmail.com",
+    "password": "Phong@123",
+    "cart": [
+      {
+        "id": 6,
+        "qty": 1
+      },
+      {
+        "id": 7,
+        "qty": 1
+      }
+    ],
+    "history": [],
+    "lastCategory": "foreign",
+    "orders": [
+      {
+        "id": "HP251202004",
+        "date": "12:48:04 2/12/2025",
+        "items": [
+          {
+            "id": 7,
+            "qty": 5
+          }
+        ],
+        "total": 575000,
+        "status": "Shipping"
+      },
+      {
+        "id": "HP251202003",
+        "date": "12:03:09 2/12/2025",
+        "items": [
+          {
+            "id": 27,
+            "qty": 1
+          },
+          {
+            "id": 26,
+            "qty": 1
+          }
+        ],
+        "total": 301000,
+        "status": "Đang xử lý"
+      }
+    ]
+  },
+  {
+    "name": "Phương Đỗ",
+    "email": "dotrieuducphuong2005@gmail.com",
+    "avatar": "https://lh3.googleusercontent.com/a/ACg8ocLaV7zbVyLFvo1t-2ToLBRuB3re4RshjclJ4X1TQysnud6sSOAc=s96-c",
+    "cart": [],
+    "history": [],
+    "lastCategory": "psychology",
+    "orders": [
+      {
+        "id": "HP251224001",
+        "date": "23:47:27 24/12/2025",
+        "items": [
+          {
+            "id": 2,
+            "qty": 1,
+            "price": 79203,
+            "title": "Thực hành dịch tiếng Anh"
+          },
+          {
+            "id": 22,
+            "qty": 1,
+            "price": 270000,
+            "title": "Nghệ thuật lãnh đạo hiện đại"
+          }
+        ],
+        "total": 349203,
+        "status": "Shipping"
+      },
+      {
+        "id": "HP251209001",
+        "date": "22:36:28 9/12/2025",
+        "items": [
+          {
+            "id": 1,
+            "qty": 2,
+            "price": 171000,
+            "title": "Việt Nam – Ẩn Mặc Thông Dung"
+          },
+          {
+            "id": 2,
+            "qty": 1,
+            "price": 79203,
+            "title": "Thực hành dịch tiếng Anh"
+          }
+        ],
+        "total": 421203,
+        "status": "canceled"
+      },
+      {
+        "id": "HP251202001",
+        "date": "10:07:30 2/12/2025",
+        "items": [
+          {
+            "id": 1,
+            "qty": 1
+          },
+          {
+            "id": 3,
+            "qty": 1
+          },
+          {
+            "id": 2,
+            "qty": 1
+          }
+        ],
+        "total": 385200,
+        "status": "canceled"
+      },
+      {
+        "id": "HP251201002",
+        "date": "00:13:04 2/12/2025",
+        "items": [
+          {
+            "id": 7,
+            "qty": 1
+          },
+          {
+            "id": 3,
+            "qty": 1
+          }
+        ],
+        "total": 250000,
+        "status": "Shipping"
+      },
+      {
+        "id": "HP251201001",
+        "date": "23:26:09 1/12/2025",
+        "items": [
+          {
+            "id": 3,
+            "qty": 1
+          },
+          {
+            "id": 27,
+            "qty": 1
+          },
+          {
+            "id": 6,
+            "qty": 1
+          }
+        ],
+        "total": 510000,
+        "status": "Đang xử lý"
+      }
+    ]
+  },
+  {
+    "name": "trường hoàng",
+    "email": "truongcnkdhy224@gmail.com",
+    "avatar": "https://lh3.googleusercontent.com/a/ACg8ocLKUPMf5BN1yECESON0H_SW2gt_5O20U4Qphqj7oSFRsSnAvQ=s96-c",
+    "cart": [],
+    "history": [],
+    "lastCategory": "justarrived",
+    "orders": []
+  }
+]

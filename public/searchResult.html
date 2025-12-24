@@ -1,0 +1,244 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HomePage</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    </head>
+    <body>
+        <div class="topbar">
+            <div class="contact">
+                <div class="item">
+                <i class="fas fa-phone"></i>
+                <a href="#">0987654321</a>
+                </div>
+                <div class="item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="#">hotroHappyBook@gmail.com</a>
+                </div>
+                <div class="item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="#">Trường Đại học Công nghiệp Hà Nội</a>
+                </div>
+            </div>
+            <div class="account"> 
+                <a href="#">Log in</a>
+                <a href="#">Register</a>
+            </div>
+        </div>
+        <header>
+            <div class="logo">
+                <a href="home.html">
+                    <img src="./images/logo.png" alt="" style=" width: 300px;">
+                </a>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search book...">
+                <button>Search</button>
+            </div>
+            <div class="cart">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="numOfProduct">0</span>
+                </a>
+            </div>
+        </header>   
+         <main class="content">
+        <h2 id="search-title">Kết quả tìm kiếm</h2>
+        <div id="search-results" class="product-grid">
+            <!-- Sản phẩm sẽ hiển thị ở đây -->
+        </div>
+    </main>
+        <footer>
+            <div class="footer-container">
+                
+                <div class="footer-column info">
+                    <h3>HappyBook.com</h3>
+                    <p>HappyBook is the leading online bookstore in Vietnam. We are committed to providing genuine, diverse books at the best prices.</p>
+                    <p><strong>Hotline:</strong> 0987.654.321</p>
+                    <p><strong>Email:</strong> hotroHappyBook@gmail.com</p>
+                </div>
+        
+                <div class="footer-column links">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Shopping Guide</a></li>
+                        <li><a href="#">Return & Exchange Policy</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                        <li><a href="#">Submit a Support Request</a></li>
+                        <li><a href="#">Shipping & Delivery</a></li>
+                    </ul>
+                </div>
+        
+                <div class="footer-column links">
+                    <h4>About HappyBook</h4>
+                    <ul>
+                        <li><a href="#">Company Introduction</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Publishing Partnership</a></li>
+                    </ul>
+                </div>
+        
+                <div class="footer-column follow">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <h4>Payment Methods</h4>
+                    <div class="payment-icons">s
+                        <img src="./images/visa.jpg" alt="Visa">
+                        <img src="./images/mastercard.jpg" alt="Mastercard">
+                        <img src="./images/momo.jpg" alt="momo">
+                        <img src="./images/cod.jpg" alt="COD">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 HappyBook.com. All rights reserved by HappyBook.</p>
+            </div>
+        </footer>
+        <script>
+      async function loadSearchResults() {
+        const query = localStorage.getItem("searchQuery");
+        const container = document.getElementById("search-results");
+        const title = document.getElementById("search-title");
+
+        if (!query) {
+          container.innerHTML = "<p>Không có từ khóa tìm kiếm!</p>";
+          return;
+        }
+
+        title.innerText = `Kết quả tìm kiếm: "${query}"`;
+
+        try {
+          // Lấy dữ liệu từ API (hoặc từ tất cả sản phẩm nếu chưa có API)
+          const res = await fetch("/api/products"); // trả về danh sách tất cả sản phẩm
+          const products = await res.json();
+
+          // Lọc theo tên
+          const filtered = products.filter((p) =>
+            p.title.toLowerCase().includes(query.toLowerCase())
+          );
+
+          if (filtered.length === 0) {
+            container.innerHTML = "<p>Không tìm thấy sản phẩm nào!</p>";
+            return;
+          }
+
+          container.innerHTML = "";
+          filtered.forEach((p) => {
+            const div = document.createElement("div");
+            div.className = "product-item";
+            div.innerHTML = `
+                        <img src="${p.image}" alt="${p.title}">
+                        <p class="product-title">${p.title}</p>
+                        <p class="product-price-old">${p.priceOld.toLocaleString()}₫</p>
+                        <p class="product-price-new">${p.priceNew.toLocaleString()}₫</p>
+                        <div class="product-actions">
+                            <button onclick="addToCart(${
+                              p.id
+                            })">Add to cart</button>
+                            <button onclick="gotoDetail(${
+                              p.id
+                            })">Details</button>
+                        </div>
+                    `;
+            container.appendChild(div);
+          });
+        } catch (err) {
+          console.error(err);
+          container.innerHTML = "<p>Lỗi khi tải dữ liệu!</p>";
+        }
+      }
+
+      // Các hàm addToCart và gotoDetail cũng cần import từ script.js
+      async function getUserInfo() {
+        const res = await fetch("/api/user/info");
+        return await res.json();
+      }
+
+      async function addToCart(id) {
+        const user = await getUserInfo();
+        if (!user || user.loggedIn === false) {
+          alert("Bạn chưa đăng nhập!");
+          window.location.href = "/login.html";
+          return;
+        }
+
+        const res = await fetch("/api/cart/add", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, qty: 1 }),
+        });
+
+        const data = await res.json();
+        if (data.cart) {
+          const totalQty = data.cart.reduce((sum, item) => sum + item.qty, 0);
+          document.getElementById("numOfProduct").innerText = totalQty;
+        }
+
+        alert("Đã thêm vào giỏ hàng!");
+      }
+
+      function gotoDetail(id) {
+        localStorage.setItem("selectedProductId", id);
+        window.location.href = "/BookDetail.html";
+      }
+
+      document.addEventListener("DOMContentLoaded", loadSearchResults);
+    </script>
+    <script>
+        function setupSearch() {
+  const searchInput = document.querySelector(".search input");
+  const searchBtn = document.querySelector(".search button");
+
+  function doSearch() {
+    const query = searchInput.value.trim();
+    if (!query) {
+      alert("Vui lòng nhập tên sách!");
+      return;
+    }
+
+    // Lưu từ khóa tìm kiếm vào localStorage
+    localStorage.setItem("searchQuery", query);
+
+    // Chuyển sang trang searchResult.html
+    window.location.href = "/searchResult.html";
+  }
+
+  // Click button search
+  searchBtn.addEventListener("click", doSearch);
+
+  // Nhấn Enter cũng search được
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") doSearch();
+  });
+}
+
+// Khởi tạo khi DOM load xong
+document.addEventListener("DOMContentLoaded", setupSearch);
+    </script>
+    </script>
+    <script type="module">
+      import { setupSearch } from "./search.js";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        setupSearch({
+          apiUrl: "/api/products",
+          redirectUrl: "/searchResult.html",
+          localStorageKey: "searchQuery",
+        });
+      });
+    </script>
+    </body>
+    </body>
+    </html>

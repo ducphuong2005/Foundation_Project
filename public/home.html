@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+</head>
+<body>
+    <div class="topbar">
+        <div class="contact">
+            <div class="item">
+            <i class="fas fa-phone"></i>
+            <a href="#">0987654321</a>
+            </div>
+            <div class="item">
+                <i class="fas fa-envelope"></i>
+                <a href="#">hotroHappyBook@gmail.com</a>
+            </div>
+            <div class="item">
+                <i class="fas fa-map-marker-alt"></i>
+                <a href="#">Trường Đại học Công nghiệp Hà Nội</a>
+            </div>
+        </div>
+        <div class="account"> 
+            <a href="login.html">Log in</a>
+            <a href="registration.html">Register</a>
+        </div>
+    </div>
+    <header>
+        <div class="logo">
+            <a href="home.html">
+                <img src="./images/logo.png" alt="" style=" width: 300px;">
+            </a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Search book...">
+            <button>Search</button>
+        </div>
+        <div class="cart">
+            <a href="cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="numOfProduct">0</span>
+            </a>
+        </div>
+        <div class="manage-order-link" style="margin-left:24px;display:inline-block;">
+            <a href="./ManageOrder/manageOrderCustomer.html" style="font-weight:bold;color:#568ce6;">My Orders</a>
+        </div>
+    </header>
+    <div class="main-content">
+        
+        <div class="sidebar">
+
+            <h3 style="padding: 10px; background-color:rgb(248, 155, 155); border-radius: 6px 6px 0 0;">Category</h3>
+            <div class="sidebar-menu">
+                <ul>
+                    <li><a href="#" data-category="new">New Releases</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="new">This Week's Highlights</a></li>
+                            <li><a href="#" data-category="new">Just Arrived</a></li>
+                            <li><a href="#" data-category="new">Pre-Order Books</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="best">Best Sellers</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="best">Top Fiction Books</a></li>
+                            <li><a href="#" data-category="best">Top Non-fiction Books</a></li>
+                            <li><a href="#" data-category="best">Readers’ Favorites</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="literature">Literature</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="literature">Vietnamese Literature</a></li>
+                            <li><a href="#" data-category="literature">World Literature</a></li>
+                            <li><a href="#" data-category="literature">Poetry & Short Stories</a></li>
+                            <li><a href="#" data-category="literature">Memoirs & Autobiographies</a></li>
+                            <li><a href="#" data-category="literature">Historical Fiction</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="economy">Economy</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="economy">Business & Management</a></li>
+                            <li><a href="#" data-category="economy">Marketing & Sales</a></li>
+                            <li><a href="#" data-category="economy">Finance & Investment</a></li>
+                            <li><a href="#" data-category="economy">Entrepreneurship</a></li>
+                            <li><a href="#" data-category="economy">Leadership & Strategy</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="psychology">Psychology-Life skills</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="psychology">Personal Development</a></li>
+                            <li><a href="#" data-category="psychology">Mindfulness & Happiness</a></li>
+                            <li><a href="#" data-category="psychology">Communication & Relationships</a></li>
+                            <li><a href="#" data-category="psychology">Workplace Psychology</a></li>
+                            <li><a href="#" data-category="psychology">Emotional Intelligence</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="kids">Children's Books</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="kids">Picture Books</a></li>
+                            <li><a href="#" data-category="kids">Fairy Tales & Fables</a></li>
+                            <li><a href="#" data-category="kids">Educational Stories</a></li>
+                            <li><a href="#" data-category="kids">Science for Kids</a></li>
+                            <li><a href="#" data-category="kids">Moral Stories</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="foreign">Foreign Language Books</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="foreign">English Learning</a></li>
+                            <li><a href="#" data-category="foreign">Japanese Learning</a></li>
+                            <li><a href="#" data-category="foreign">Korean Learning</a></li>
+                            <li><a href="#" data-category="foreign">Chinese Learning</a></li>
+                            <li><a href="#" data-category="foreign">Dictionaries & Grammar</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="textbook">Textbook & References</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="textbook">Primary & Secondary School</a></li>
+                            <li><a href="#" data-category="textbook">High School</a></li>
+                            <li><a href="#" data-category="textbook">University & College</a></li>
+                            <li><a href="#" data-category="textbook">Exam Preparation</a></li>
+                            <li><a href="#" data-category="textbook">Reference Books</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="comics">Comics & Manga</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="comics">Shonen (Action)</a></li>
+                            <li><a href="#" data-category="comics">Shojo (Romance)</a></li>
+                            <li><a href="#" data-category="comics">Seinen (Adult)</a></li>
+                            <li><a href="#" data-category="comics">Fantasy & Adventure</a></li>
+                            <li><a href="#" data-category="comics">Comedy & Slice of Life</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="religion">Religion & Philosophy</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" data-category="religion">Buddhism</a></li>
+                            <li><a href="#" data-category="religion">Christianity</a></li>
+                            <li><a href="#" data-category="religion">Islam</a></li>
+                            <li><a href="#" data-category="religion">Eastern Philosophy</a></li>
+                            <li><a href="#" data-category="religion">Spiritual Life</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="content">
+                <!-- Sản phẩm đã xem gần đây -->
+            <div id="suggest" style="margin: 20px 0;"></div>
+            <section class="banner-section">
+                <div class="slideshow-container">
+                    <div class="slide-wrapper">
+                        <div class="slide">
+                            <img src="./images/banner3.png" alt="Banner 3">
+                        </div>
+                        <div class="slide">
+                            <img src="./images/banner1.png" alt="Banner 1">
+                        </div>
+                        
+                        <div class="slide">
+                            <img src="./images/banner2.png" alt="Banner 2">
+                        </div>
+                        
+                        <div class="slide">
+                            <img src="./images/banner3.png" alt="Banner 3">
+                        </div>
+                        <div class="slide">
+                            <img src="./images/banner1.png" alt="Banner 1">
+                        </div>
+                        
+                    </div>
+                    
+                    <button class="prev-btn">❮</button>
+                    <button class="next-btn">❯</button>
+                </div>
+            </section>
+            <div class="banner2">
+                <img src="./images/banner1.png" alt="">
+                <img src="./images/banner2.png" alt="">
+            </div>
+            <div class="product-display">
+    
+                <div class="product-tabs">
+                    <a href="#" class="active" data-tab="new">Hot New Books</a>
+                    <a href="#" data-tab="promo">Promotional Books</a>
+                </div>
+            
+                <div class="tab-content-wrapper">
+                    
+                    <div id="tab-new" class="product-grid tab-pane active">
+                        
+                        
+                    </div>
+                    
+                    <div id="tab-promo" class="product-grid tab-pane">
+                        
+                    </div>
+                </div>
+            </div>
+            <section class="standard-product-section">
+    
+                
+                    </div>
+                    
+                    </div>
+            </section>
+            
+            <section class="standard-product-section">
+                
+                
+            </section>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            
+            <div class="footer-column info">
+                <h3>HappyBook.com</h3>
+                <p>HappyBook is the leading online bookstore in Vietnam. We are committed to providing genuine, diverse books at the best prices.</p>
+                <p><strong>Hotline:</strong> 0987.654.321</p>
+                <p><strong>Email:</strong> hotroHappyBook@gmail.com</p>
+            </div>
+    
+            <div class="footer-column links">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Shopping Guide</a></li>
+                    <li><a href="#">Return & Exchange Policy</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Submit a Support Request</a></li>
+                    <li><a href="#">Shipping & Delivery</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-column links">
+                <h4>About HappyBook</h4>
+                <ul>
+                    <li><a href="#">Company Introduction</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Publishing Partnership</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-column follow">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <h4>Payment Methods</h4>
+                <div class="payment-icons">
+                    <img src="./images/visa.jpg" alt="Visa">
+                    <img src="./images/mastercard.jpg" alt="Mastercard">
+                    <img src="./images/momo.jpg" alt="momo">
+                    <img src="./images/cod.jpg" alt="COD">
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 HappyBook.com. All rights reserved by HappyBook.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script type="module">
+      import { setupSearch } from "./search.js";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        setupSearch({
+          apiUrl: "/api/products",
+          redirectUrl: "/searchResult.html",
+          localStorageKey: "searchQuery",
+        });
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+
+    fetch("/api/user/info", { credentials: "include" })
+    .then(res => res.json())
+    .then(user => {
+
+        if (!user || !user.email) return;
+
+        const accountBox = document.querySelector(".account");
+
+        accountBox.innerHTML = `
+            <div class="user-info" style="display:flex;align-items:center;gap:10px;">
+                <img src="${user.avatar || '/images/default-avatar.png'}" 
+                     style="width:35px;height:35px;border-radius:50%;object-fit:cover;">
+                <span style="font-weight:bold;">${user.name}</span>
+                <button id="logoutBtn" 
+                        style="padding:5px 10px;background:#ff4444;color:white;border:none;border-radius:5px;cursor:pointer;">
+                    Logout
+                </button>
+            </div>
+        `;
+
+        document.getElementById("logoutBtn").onclick = () => {
+            fetch("/api/logout")
+            .then(() => window.location.href = "/login.html");
+        };
+
+    });
+});
+    </script>
+</body>
+
+<!-- Chatbot Gemini UI -->
+<div id="chatbot-container" style="position:fixed;bottom:24px;right:24px;z-index:9999;width:340px;max-width:90vw;">
+    <div id="chatbot-header" style="background:#568ce6;color:white;padding:10px 16px;border-radius:12px 12px 0 0;cursor:pointer;">💬 Ask HappyBook AI</div>
+    <div id="chatbot-body" style="display:none;background:white;border:1px solid #568ce6;border-top:none;border-radius:0 0 12px 12px;max-height:400px;overflow-y:auto;padding:12px 8px 8px 8px;font-size:15px;"></div>
+    <form id="chatbot-form" style="display:none;background:white;border:1px solid #568ce6;border-top:none;border-radius:0 0 12px 12px;padding:8px;display:flex;gap:6px;align-items:center;" autocomplete="off">
+        <input id="chatbot-input" type="text" placeholder="Type..." style="flex:1;padding:6px 10px;border-radius:6px;border:1px solid #ccc;outline:none;" required />
+        <button type="submit" style="background:#568ce6;color:white;border:none;padding:6px 14px;border-radius:6px;cursor:pointer;">Submit</button>
+    </form>
+</div>
+<script>
+const chatbotHeader = document.getElementById('chatbot-header');
+const chatbotBody = document.getElementById('chatbot-body');
+const chatbotForm = document.getElementById('chatbot-form');
+const chatbotInput = document.getElementById('chatbot-input');
+let chatbotOpen = false;
+
+chatbotHeader.onclick = () => {
+    chatbotOpen = !chatbotOpen;
+    chatbotBody.style.display = chatbotOpen ? 'block' : 'none';
+    chatbotForm.style.display = chatbotOpen ? 'flex' : 'none';
+    if (chatbotOpen) chatbotInput.focus();
+};
+
+chatbotForm.onsubmit = async (e) => {
+    e.preventDefault();
+    const msg = chatbotInput.value.trim();
+    if (!msg) return;
+    chatbotBody.innerHTML += `<div style='margin-bottom:6px;text-align:right;'><span style='background:#e6f0fa;padding:6px 10px;border-radius:8px;display:inline-block;'>${msg}</span></div>`;
+    chatbotInput.value = '';
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+    chatbotBody.innerHTML += `<div id='chatbot-typing' style='color:#888;font-style:italic;margin-bottom:6px;'>Đang trả lời...</div>`;
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+    try {
+        const res = await fetch('/api/chatbot', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: msg })
+        });
+        const data = await res.json();
+        document.getElementById('chatbot-typing').remove();
+        chatbotBody.innerHTML += `<div style='margin-bottom:6px;text-align:left;'><span style='background:#f3f3f3;padding:6px 10px;border-radius:8px;display:inline-block;'>${data.reply ? data.reply.replace(/\n/g,'<br>') : 'Không có phản hồi.'}</span></div>`;
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+    } catch (err) {
+        document.getElementById('chatbot-typing').remove();
+        chatbotBody.innerHTML += `<div style='color:red;margin-bottom:6px;'>Lỗi khi gửi câu hỏi!</div>`;
+    }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Inventory</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+
+    body {
+        display: flex;
+        background: linear-gradient(to bottom right, #f0f6ff, #e8f1ff);
+        color: #333;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+        width: 230px;
+        background: linear-gradient(180deg, rgb(117,166,240), rgb(86,140,230));
+        height: 100vh;
+        position: fixed;
+        padding: 20px;
+        color: #fff;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .menu li {
+        list-style: none;
+        padding: 12px 10px;
+        margin-bottom: 5px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .menu li:hover,
+    .menu li.active {
+        background: rgba(255,255,255,0.15);
+        transform: translateX(4px);
+    }
+
+    .menu li a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    /* MAIN */
+    .main {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+        padding: 30px;
+    }
+
+    header {
+        background: #fff;
+        padding: 15px 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 8px rgba(117,166,240,0.15);
+    }
+
+    /* CARDS */
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+
+    .card {
+        background: white;
+        padding: 22px;
+        border-radius: 14px;
+        box-shadow: 0 3px 8px rgba(117,166,240,0.12);
+        transition: .25s;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 18px rgba(117,166,240,0.25);
+    }
+
+    .card h3 {font-size: 17px; margin-bottom: 8px;}
+    .card p {font-size: 24px; font-weight: 600; color: rgb(86,140,230);}
+
+    /* TABLE */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 3px 8px rgba(117,166,240,0.15);
+    }
+
+    thead {
+        background: #eef3ff;
+    }
+
+    th, td {
+        padding: 14px 12px;
+        font-size: 15px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+    }
+
+    tbody tr:hover {
+        background: #f4f7ff;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+        background: rgb(86,140,230);
+        border: none;
+        padding: 10px 18px;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: .25s;
+    }
+
+    .btn-primary:hover {
+        background: rgb(60,110,200);
+        transform: translateY(-2px);
+    }
+
+    .btn-edit {
+        background: #ffc107;
+        border: none;
+        padding: 6px 12px;
+        color: #333;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-right: 6px;
+    }
+
+    .btn-delete {
+        background: #dc3545;
+        border: none;
+        padding: 6px 12px;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    /* SEARCH BAR */
+    .search-bar {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+
+    .search-bar input {
+        flex-grow: 1;
+        padding: 10px 14px;
+        border: 1px solid #ccd7f1;
+        border-radius: 8px;
+    }
+
+    /* MODAL */
+    #inventoryModal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #inventoryModal .modal-box {
+        background: white;
+        padding: 25px;
+        width: 380px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(117,166,240,0.3);
+        animation: fadeIn .25s ease;
+    }
+
+    @keyframes fadeIn {
+        from {transform: translateY(-12px); opacity: 0;}
+        to   {transform: translateY(0); opacity: 1;}
+    }
+
+    input, textarea {
+        border: 1px solid #ccd7f1;
+        padding: 10px 12px;
+        border-radius: 8px;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    input:focus, textarea:focus {
+        border-color: rgb(86,140,230);
+        box-shadow: 0 0 0 2px rgba(86,140,230,.2);
+        outline: none;
+    }
+
+    .modal-flex {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .modal-flex .modal-col {
+        flex: 1;
+    }
+
+    #pImagePreview {
+        display: none;
+        width: 120px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #ccd7f1;
+        margin: 6px 0 14px;
+    }
+
+    .modal-box .hint {
+        display: block;
+        font-size: 12px;
+        color: #666;
+        margin: -6px 0 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+      <div><img src="../images/logo.png" height="45px"></div>
+
+      <ul class="menu">
+        <li><i class="fa fa-chart-bar"></i><a href="../dashboard/index.html">Dashboard</a></li>
+        <li><i class="fa-solid fa-box"></i><a href="../ManageOrder/manageOrderAdmin.html">Manage Order</a></li>
+        <li><i class="fa-solid fa-book-medical"></i><a href="../FP-AddBook/addbook.html">Add Book</a></li>
+        <li class="active"><i class="fa-solid fa-warehouse"></i><a href="ManageInventory.html">Manage Inventory</a></li>
+                <li class="logout-item"><i class="fa-solid fa-right-from-bracket"></i><a href="#" id="logoutInventory">Logout</a></li>
+      </ul>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+      <header><h1>Manage Inventory</h1></header>
+
+      <!-- CARDS -->
+      <div class="cards">
+          <div class="card"><h3>Total Items</h3><p id="totalItems">0</p></div>
+          <div class="card"><h3>Low Stock</h3><p id="lowStock">0</p></div>
+          <div class="card"><h3>Out of Stock</h3><p id="outStock">0</p></div>
+          <div class="card"><h3>Last Update</h3><p id="lastUpdate">Today</p></div>
+      </div>
+
+      <!-- SEARCH -->
+      <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search books...">
+          <button class="btn-primary" onclick="openAddModal()">+ Add Product</button>
+      </div>
+
+      <!-- TABLE -->
+      <table>
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Stock</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody id="inventoryTable"></tbody>
+      </table>
+  </div>
+
+  <!-- MODAL -->
+  <div id="inventoryModal">
+    <div class="modal-box">
+        <h2 id="modalTitle">Add Product</h2>
+
+        <label>Name</label>
+        <input id="pName" type="text" placeholder="Tên sách">
+
+        <label>Author</label>
+        <input id="pAuthor" type="text" placeholder="Tác giả">
+
+        <label>Publisher</label>
+        <input id="pPublisher" type="text" placeholder="Nhà xuất bản">
+
+        <label>Category</label>
+        <input id="pCategory" type="text" placeholder="Phân loại">
+
+        <div class="modal-flex">
+            <div class="modal-col">
+                <label>Stock</label>
+                <input id="pStock" type="number" min="0" placeholder="Số lượng tồn">
+            </div>
+            <div class="modal-col">
+                <label>Price (Old)</label>
+                <input id="pPriceOld" type="number" min="0" placeholder="Giá gốc">
+            </div>
+            <div class="modal-col">
+                <label>Price (New)</label>
+                <input id="pPriceNew" type="number" min="0" placeholder="Giá bán">
+            </div>
+        </div>
+
+        <label>Description</label>
+        <textarea id="pDescription" rows="3" placeholder="Mô tả ngắn"></textarea>
+
+        <label>Cover Image</label>
+        <input id="pImageFile" type="file" accept="image/*">
+        <small class="hint">Chọn ảnh để tải lên (tối đa 5MB). Nếu không chọn, hệ thống giữ ảnh hiện tại.</small>
+        <input id="pImageName" type="text" placeholder="Tên file hiện tại" readonly>
+        <img id="pImagePreview" alt="Ảnh xem trước">
+
+        <div style="text-align:right; margin-top: 10px;">
+            <button class="btn-delete" onclick="closeModal()">Cancel</button>
+            <button class="btn-primary" onclick="saveProduct()">Save</button>
+        </div>
+    </div>
+  </div>
+
+<!-- JAVASCRIPT -->
+<script>
+let currentProducts = [];
+let editID = null;
+
+const inventoryModal = document.getElementById("inventoryModal");
+const modalTitle = document.getElementById("modalTitle");
+const nameInput = document.getElementById("pName");
+const authorInput = document.getElementById("pAuthor");
+const publisherInput = document.getElementById("pPublisher");
+const categoryInput = document.getElementById("pCategory");
+const stockInput = document.getElementById("pStock");
+const priceOldInput = document.getElementById("pPriceOld");
+const priceNewInput = document.getElementById("pPriceNew");
+const descriptionInput = document.getElementById("pDescription");
+const imageFileInput = document.getElementById("pImageFile");
+const imageNameInput = document.getElementById("pImageName");
+const imagePreview = document.getElementById("pImagePreview");
+const totalItems = document.getElementById("totalItems");
+const lowStock = document.getElementById("lowStock");
+const outStock = document.getElementById("outStock");
+const lastUpdate = document.getElementById("lastUpdate");
+
+if (imagePreview) {
+    imagePreview.addEventListener("error", () => {
+        imagePreview.style.display = "none";
+    });
+}
+
+async function loadInventory() {
+    try {
+        const res = await fetch("http://localhost:3000/api/admin/products", { credentials: "include" });
+
+        if (res.status === 403) {
+            alert("Bạn không có quyền admin!");
+            location.href = "/login.html";
+            return;
+        }
+
+        if (!res.ok) {
+            throw new Error("Không thể tải danh sách sản phẩm");
+        }
+
+        currentProducts = await res.json();
+        renderInventory();
+        if (lastUpdate) {
+            lastUpdate.innerText = new Date().toLocaleString("vi-VN");
+        }
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+function renderInventory(keyword = "") {
+    const tbody = document.getElementById("inventoryTable");
+    tbody.innerHTML = "";
+
+    const query = keyword.trim().toLowerCase();
+    const products = query
+        ? currentProducts.filter(p =>
+            (p.title || "").toLowerCase().includes(query) ||
+            (p.category || "").toLowerCase().includes(query)
+        )
+        : currentProducts;
+
+    if (products.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px;">Không có sản phẩm phù hợp</td></tr>`;
+    }
+
+    products.forEach(p => {
+        const title = p.title || "";
+        const category = p.category || "";
+        const stock = Number(p.stock) || 0;
+        const status = stock <= 0
+            ? "Out of Stock"
+            : stock <= 5
+            ? "Low Stock"
+            : "In Stock";
+
+        const color = stock <= 0
+            ? "red"
+            : stock <= 5
+            ? "orange"
+            : "green";
+
+        const priceDisplay = Number(p.priceNew || 0).toLocaleString() + " ₫";
+
+        tbody.innerHTML += `
+            <tr>
+                <td>${title}</td>
+                <td>${category}</td>
+                <td>${stock}</td>
+                <td>${priceDisplay}</td>
+                <td style="color:${color}; font-weight:bold">${status}</td>
+                <td>
+                    <button class="btn-edit" onclick="openEditModal(${p.id})">Edit</button>
+                    <button class="btn-delete" onclick="deleteProduct(${p.id})">Delete</button>
+                </td>
+            </tr>
+        `;
+    });
+
+    updateSummary();
+}
+
+function updateSummary() {
+    totalItems.innerText = currentProducts.length;
+    lowStock.innerText = currentProducts.filter(p => {
+        const stock = Number(p.stock) || 0;
+        return stock > 0 && stock <= 5;
+    }).length;
+    outStock.innerText = currentProducts.filter(p => Number(p.stock) <= 0).length;
+}
+
+function cleanImagePath(value) {
+    return (value || "").replace(/^\/+/, "").replace(/^images\//i, "").trim();
+}
+
+function updateImagePreviewDisplay(value) {
+    const sanitized = cleanImagePath(value);
+
+    if (!sanitized) {
+        imagePreview.style.display = "none";
+        imagePreview.removeAttribute("src");
+        return;
+    }
+
+    imagePreview.src = `/images/${sanitized}`;
+    imagePreview.style.display = "block";
+}
+
+function previewSelectedFile(file) {
+    if (!file) {
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        imagePreview.src = event.target.result;
+        imagePreview.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+}
+
+async function uploadImage(file) {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const res = await fetch("/api/admin/upload-image", {
+        method: "POST",
+        credentials: "include",
+        body: formData
+    });
+
+    if (res.status === 403) {
+        window.location.href = "/login.html";
+        throw new Error("Không có quyền admin");
+    }
+
+    const payload = await res.json().catch(() => ({}));
+
+    if (!res.ok || !payload.success) {
+        const message = payload.message || "Tải ảnh thất bại";
+        throw new Error(message);
+    }
+
+    return payload.fileName;
+}
+
+function openAddModal() {
+    editID = null;
+    modalTitle.innerText = "Add Product";
+    nameInput.value = "";
+    authorInput.value = "";
+    publisherInput.value = "";
+    categoryInput.value = "";
+    stockInput.value = "";
+    priceOldInput.value = "";
+    priceNewInput.value = "";
+    descriptionInput.value = "";
+    imageFileInput.value = "";
+    imageNameInput.value = "";
+    updateImagePreviewDisplay("");
+    inventoryModal.style.display = "flex";
+}
+
+function openEditModal(id) {
+    const product = currentProducts.find(x => x.id === id);
+    if (!product) {
+        alert("Không tìm thấy sản phẩm");
+        return;
+    }
+
+    editID = id;
+    modalTitle.innerText = "Edit Product";
+    nameInput.value = product.title || "";
+    authorInput.value = product.author || "";
+    publisherInput.value = product.publisher || "";
+    categoryInput.value = product.category || "";
+    stockInput.value = Number(product.stock ?? 0);
+    priceOldInput.value = Number(product.priceOld ?? product.priceNew ?? 0);
+    priceNewInput.value = Number(product.priceNew ?? 0);
+    descriptionInput.value = product.description || "";
+
+    const imageName = cleanImagePath(product.image || "");
+    imageNameInput.value = imageName;
+    imageFileInput.value = "";
+    updateImagePreviewDisplay(imageName);
+
+    inventoryModal.style.display = "flex";
+}
+
+function closeModal() {
+    inventoryModal.style.display = "none";
+}
+
+async function saveProduct() {
+    const title = nameInput.value.trim();
+    const category = categoryInput.value.trim();
+    const author = authorInput.value.trim();
+    const publisher = publisherInput.value.trim();
+    const description = descriptionInput.value.trim();
+
+    const stock = Number(stockInput.value);
+    const priceOld = Number(priceOldInput.value);
+    const priceNew = Number(priceNewInput.value);
+
+    if (!title || !category) {
+        alert("Vui lòng nhập tối thiểu tên sách và phân loại");
+        return;
+    }
+
+    if ([stock, priceOld, priceNew].some(value => Number.isNaN(value))) {
+        alert("Vui lòng nhập số hợp lệ cho số lượng và giá");
+        return;
+    }
+
+    if (stock < 0 || priceOld < 0 || priceNew < 0) {
+        alert("Giá và số lượng không được âm");
+        return;
+    }
+
+    let imageName = cleanImagePath(imageNameInput.value) || "";
+
+    if (imageFileInput && imageFileInput.files && imageFileInput.files[0]) {
+        try {
+            imageName = await uploadImage(imageFileInput.files[0]);
+            imageNameInput.value = imageName;
+        } catch (error) {
+            alert(error.message);
+            return;
+        }
+    }
+
+    if (!imageName) {
+        imageName = "biasach.jpg";
+    }
+
+    const normalizedPriceOld = priceOld || priceNew;
+
+    const data = {
+        title,
+        author,
+        publisher,
+        category,
+        stock,
+        priceOld: normalizedPriceOld,
+        priceNew,
+        description,
+        image: imageName
+    };
+
+    let url = "http://localhost:3000/api/admin/add";
+    let method = "POST";
+
+    if (editID !== null) {
+        url = `http://localhost:3000/api/admin/update/${editID}`;
+        method = "PUT";
+    }
+
+    try {
+        const res = await fetch(url, {
+            method,
+            headers: {"Content-Type":"application/json"},
+            credentials: "include",
+            body: JSON.stringify(data)
+        });
+
+        if (res.status === 403) {
+            alert("Bạn không có quyền admin!");
+            window.location.href = "/login.html";
+            return;
+        }
+
+        if (!res.ok) {
+            const errorPayload = await res.json().catch(() => ({}));
+            const message = errorPayload.message || "Không thể lưu sản phẩm. Vui lòng thử lại.";
+            throw new Error(message);
+        }
+
+        if (imageFileInput) {
+            imageFileInput.value = "";
+        }
+        closeModal();
+        loadInventory();
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+async function deleteProduct(id) {
+    if (!confirm("Delete this product?")) return;
+
+    try {
+        const res = await fetch(`http://localhost:3000/api/admin/delete/${id}`, {
+            method: "DELETE",
+            credentials: "include"
+        });
+
+        if (res.status === 403) {
+            alert("Bạn không có quyền admin!");
+            window.location.href = "/login.html";
+            return;
+        }
+
+        if (!res.ok) {
+            throw new Error("Không thể xóa sản phẩm. Vui lòng thử lại.");
+        }
+
+        loadInventory();
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+document.getElementById("searchInput").addEventListener("input", (event) => {
+    renderInventory(event.target.value);
+});
+
+if (imageFileInput) {
+    imageFileInput.addEventListener("change", () => {
+        const file = imageFileInput.files[0];
+        if (file) {
+            imageNameInput.value = file.name;
+            previewSelectedFile(file);
+        } else {
+            updateImagePreviewDisplay(imageNameInput.value);
+        }
+    });
+}
+
+loadInventory();
+
+const logoutInventory = document.getElementById("logoutInventory");
+if (logoutInventory) {
+    logoutInventory.addEventListener("click", async (event) => {
+        event.preventDefault();
+        try {
+            const res = await fetch("/api/logout", { credentials: "include" });
+            if (!res.ok) {
+                throw new Error("Không thể đăng xuất");
+            }
+            window.location.href = "/login.html";
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+{
+  "categories": [
+    {
+      "id": "new",
+      "name": "New Releases"
+    },
+    {
+      "id": "best",
+      "name": "Best Sellers"
+    },
+    {
+      "id": "promo",
+      "name": "Promotions"
+    },
+    {
+      "id": "literature",
+      "name": "Literature"
+    },
+    {
+      "id": "economy",
+      "name": "Economy"
+    },
+    {
+      "id": "psychology",
+      "name": "Psychology - Life Skills"
+    },
+    {
+      "id": "kids",
+      "name": "Children's Books"
+    },
+    {
+      "id": "foreign",
+      "name": "Foreign Language Books"
+    },
+    {
+      "id": "textbook",
+      "name": "Textbook & References"
+    },
+    {
+      "id": "comics",
+      "name": "Comics & Manga"
+    },
+    {
+      "id": "religion",
+      "name": "Religion & Philosophy"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Việt Nam – Ẩn Mặc Thông Dung",
+      "priceOld": 191000,
+      "priceNew": 171000,
+      "image": "/images/VietNam AnMacThongDong.jpeg",
+      "category": "new",
+      "author": "Ẩn Mặc Thông Dung",
+      "publisher": "NXB Văn Hóa",
+      "description": "Khám phá lịch sử và văn hóa Việt Nam qua góc nhìn độc đáo",
+      "stock": 5
+    },
+    {
+      "id": 2,
+      "title": "Thực hành dịch tiếng Anh",
+      "priceOld": 99203,
+      "priceNew": 79203,
+      "image": "/images/thuchanhdichtienganh.jpeg",
+      "category": "new",
+      "author": "Nguyễn Văn A",
+      "publisher": "NXB Giáo Dục",
+      "description": "Hướng dẫn thực hành dịch các văn bản tiếng Anh phổ biến.",
+      "stock": 9
+    },
+    {
+      "id": 3,
+      "title": "Đắc Nhân Tâm – Bản Mới",
+      "priceOld": 158000,
+      "priceNew": 135000,
+      "image": "/images/dacnhantam.jpg",
+      "category": "new",
+      "author": "Dale Carnegie",
+      "publisher": "NXB Tổng Hợp",
+      "description": "Hướng dẫn nghệ thuật giao tiếp và xây dựng các mối quan hệ.",
+      "stock": 4
+    },
+    {
+      "id": 4,
+      "title": "Cà Phê Cùng Tony – 2025 Edition",
+      "priceOld": 98000,
+      "priceNew": 88000,
+      "image": "/images/caphecungtony.png",
+      "category": "new",
+      "author": "Tony Buổi Sáng",
+      "publisher": "NXB Trẻ",
+      "description": "Chia sẻ kinh nghiệm sống và kinh doanh từ Tony Buổi Sáng."
+    },
+    {
+      "id": 5,
+      "title": "Nhà Giả Kim – Tái Bản",
+      "priceOld": 165000,
+      "priceNew": 149000,
+      "image": "/images/nhagiakim-taiban.jpeg",
+      "category": "new",
+      "author": "Paulo Coelho",
+      "publisher": "NXB Văn Học",
+      "description": "Cuốn tiểu thuyết truyền cảm hứng về hành trình tìm kiếm ước mơ."
+    },
+    {
+      "id": 6,
+      "title": "Muôn Kiếp Nhân Sinh 3",
+      "priceOld": 250000,
+      "priceNew": 223000,
+      "image": "/images/muonkiepnhansinh.jpeg",
+      "category": "new",
+      "author": "Nguyễn Nhật Ánh",
+      "publisher": "NXB Trẻ",
+      "description": "Tiếp tục câu chuyện nhân sinh đầy ý nghĩa và bài học sâu sắc."
+    },
+    {
+      "id": 7,
+      "title": "Hiểu về trái tim – 2025",
+      "priceOld": 129000,
+      "priceNew": 115000,
+      "image": "/images/hieuvetraitim.jpeg",
+      "category": "new",
+      "author": "Nguyễn Thị Bình",
+      "publisher": "NXB Tổng Hợp",
+      "description": "Những chia sẻ về tâm lý và cách nuôi dưỡng tình cảm."
+    },
+    {
+      "id": 8,
+      "title": "Giải Mã Nhân Tướng Học",
+      "priceOld": 150000,
+      "priceNew": 132000,
+      "image": "/images/nhantuonghoc.jpeg",
+      "category": "new",
+      "author": "Lê Văn Cường",
+      "publisher": "NXB Văn Hóa",
+      "description": "Khám phá bí ẩn về nhân tướng học và vận mệnh con người."
+    },
+    {
+      "id": 9,
+      "title": "Sách Giảm Giá Sốc 50%",
+      "priceOld": 220000,
+      "priceNew": 110000,
+      "image": "/images/combo van hoc viet.jpg",
+      "category": "promo",
+      "author": "Tổng Hợp",
+      "publisher": "NXB Khuyến Mãi",
+      "description": "Sách giảm giá cực sốc, đa dạng thể loại."
+    },
+    {
+      "id": 10,
+      "title": "Combo Văn Học Việt – SALE",
+      "priceOld": 300000,
+      "priceNew": 199000,
+      "image": "/images/combo van hoc viet.jpg",
+      "category": "promo",
+      "author": "Nhiều tác giả",
+      "publisher": "NXB Trẻ",
+      "description": "Tuyển tập các tác phẩm văn học Việt Nam đặc sắc."
+    },
+    {
+      "id": 11,
+      "title": "Kỹ Năng Sống Thực Tiễn – 40%",
+      "priceOld": 185000,
+      "priceNew": 111000,
+      "image": "/images/kynangsong.jpeg",
+      "category": "promo",
+      "author": "Nguyễn Hữu Thắng",
+      "publisher": "NXB Tổng Hợp",
+      "description": "Những kỹ năng cần thiết để sống hiệu quả và tự tin."
+    },
+    {
+      "id": 12,
+      "title": "Tâm Lý Ứng Dụng – 35%",
+      "priceOld": 145000,
+      "priceNew": 95000,
+      "image": "/images/tamlyhocungdung.jpeg",
+      "category": "promo",
+      "author": "Phạm Thị Lan",
+      "publisher": "NXB Văn Hóa",
+      "description": "Áp dụng tâm lý học vào đời sống hằng ngày."
+    },
+    {
+      "id": 13,
+      "title": "Giảm Giá Mạnh 30%",
+      "priceOld": 100000,
+      "priceNew": 70000,
+      "image": "/images/combo van hoc viet.jpg",
+      "category": "promo",
+      "author": "Tổng Hợp",
+      "publisher": "NXB Khuyến Mãi",
+      "description": "Các đầu sách hấp dẫn với giá ưu đãi."
+    },
+    {
+      "id": 14,
+      "title": "Flash Sale Sách Ngoại Văn",
+      "priceOld": 250000,
+      "priceNew": 175000,
+      "image": "/images/biasach.jpg",
+      "category": "promo",
+      "author": "Nhiều tác giả",
+      "publisher": "NXB Giáo Dục",
+      "description": "Sách ngoại văn giảm giá cực sốc."
+    },
+    {
+      "id": 15,
+      "title": "Tân Thanh – Sách Văn Học",
+      "priceOld": 88000,
+      "priceNew": 79200,
+      "image": "/images/biasach.jpg",
+      "category": "literature",
+      "author": "Nguyễn Ngọc Tân",
+      "publisher": "NXB Văn Học",
+      "description": "Tác phẩm văn học hiện đại Việt Nam."
+    },
+    {
+      "id": 16,
+      "title": "Ngàn Năm Trà Việt",
+      "priceOld": 299000,
+      "priceNew": 261000,
+      "image": "/images/ngannamtraviet.jpeg",
+      "category": "literature",
+      "author": "Trần Minh Tâm",
+      "publisher": "NXB Văn Hóa",
+      "description": "Tìm hiểu văn hóa và lịch sử trà Việt Nam."
+    },
+    {
+      "id": 17,
+      "title": "Dế Mèn Phiêu Lưu Ký",
+      "priceOld": 120000,
+      "priceNew": 95000,
+      "image": "/images/biasach.jpg",
+      "category": "literature",
+      "author": "Tô Hoài",
+      "publisher": "NXB Trẻ",
+      "description": "Câu chuyện phiêu lưu đầy màu sắc cho thiếu nhi và người lớn."
+    },
+    {
+      "id": 18,
+      "title": "Nỗi Buồn Chiến Tranh",
+      "priceOld": 150000,
+      "priceNew": 135000,
+      "image": "/images/noibuonchientranh.webp",
+      "category": "literature",
+      "author": "Bảo Ninh",
+      "publisher": "NXB Văn Học",
+      "description": "Tác phẩm về chiến tranh Việt Nam và tâm lý nhân vật."
+    },
+    {
+      "id": 19,
+      "title": "Hai Số Phận",
+      "priceOld": 175000,
+      "priceNew": 145000,
+      "image": "/images/haisophan.webp",
+      "category": "literature",
+      "author": "Nhật Tiến",
+      "publisher": "NXB Trẻ",
+      "description": "Câu chuyện về số phận và lựa chọn của con người."
+    },
+    {
+      "id": 20,
+      "title": "Truyện Ngắn Nam Cao",
+      "priceOld": 110000,
+      "priceNew": 96000,
+      "image": "/images/truyenngannamcao.jpeg",
+      "category": "literature",
+      "author": "Nam Cao",
+      "publisher": "NXB Văn Học",
+      "description": "Tuyển tập truyện ngắn nổi tiếng của Nam Cao."
+    },
+    {
+      "id": 26,
+      "title": "Tâm Lý Học Thành Công",
+      "priceOld": 170000,
+      "priceNew": 149000,
+      "image": "/images/tamlyhocthanhcong.jpg",
+      "category": "economy",
+      "author": "Nguyễn Văn Khoa",
+      "publisher": "NXB Kinh Tế",
+      "description": "Giới thiệu các khái niệm cơ bản về kinh tế vĩ mô."
+    },
+    {
+      "id": 27,
+      "title": "Sức Mạnh Của Thói Quen",
+      "priceOld": 175000,
+      "priceNew": 152000,
+      "image": "/images/sucmanhcuathoiquen.png",
+      "category": "economy",
+      "author": "Lê Thị Hồng",
+      "publisher": "NXB Tổng Hợp",
+      "description": "Chiến lược và kỹ năng lãnh đạo trong thời đại mới."
+    },
+    {
+      "id": 23,
+      "title": "Quản Trị Kinh Doanh 4.0",
+      "priceOld": 200000,
+      "priceNew": 165000,
+      "image": "/images/biasach.jpg",
+      "category": "economy",
+      "author": "Nguyễn Minh Tuấn",
+      "publisher": "NXB Kinh Tế",
+      "description": "Áp dụng công nghệ 4.0 trong quản trị doanh nghiệp."
+    },
+    {
+      "id": 24,
+      "title": "Tư duy tài chính",
+      "priceOld": 140000,
+      "priceNew": 112000,
+      "image": "/images/biasach.jpg",
+      "category": "economy",
+      "author": "Phạm Văn Đức",
+      "publisher": "NXB Kinh Tế",
+      "description": "Phát triển tư duy quản lý và đầu tư tài chính cá nhân."
+    },
+    {
+      "id": 15,
+      "title": "Tân Thanh – Sách Văn Học",
+      "priceOld": 88000,
+      "priceNew": 79200,
+      "image": "/images/tanthanh.webp",
+      "category": "economy",
+      "author": "Trần Anh Tuấn",
+      "publisher": "NXB Kinh Tế",
+      "description": "Hướng dẫn kinh doanh online từ lý thuyết đến thực hành."
+    },
+    {
+      "id": 22,
+      "title": "Nghệ thuật lãnh đạo hiện đại",
+      "priceOld": 300000,
+      "priceNew": 270000,
+      "image": "/images/nghethuatlanhdao.webp",
+      "category": "psychology",
+      "author": "Nguyễn Hoàng",
+      "publisher": "NXB Tổng Hợp",
+      "description": "Tâm lý học ứng dụng để đạt thành công cá nhân."
+    },
+    {
+      "id": 21,
+      "title": "Kinh tế vĩ mô cơ bản",
+      "priceOld": 160000,
+      "priceNew": 128000,
+      "image": "/images/kinhtevimocoban.jpeg",
+      "category": "psychology",
+      "author": "Charles D Duhigg",
+      "publisher": "NXB Văn Hóa",
+      "description": "Khám phá cách thói quen hình thành và thay đổi cuộc sống."
+    },
+    {
+      "id": 24,
+      "title": "Tư duy tài chính",
+      "priceOld": 140000,
+      "priceNew": 112000,
+      "image": "/images/tuduytaichinh.jpeg",
+      "category": "psychology",
+      "author": "Jon Kabat-Zinn",
+      "publisher": "NXB Tổng Hợp",
+      "description": "Ứng dụng thiền trong việc cải thiện sức khỏe tinh thần."
+    },
+    {
+      "id": 29,
+      "title": "Giải Tỏa Căng Thẳng",
+      "priceOld": 98000,
+      "priceNew": 85000,
+      "image": "/images/giaitoacangthang.png",
+      "category": "psychology",
+      "author": "Nguyễn Thị Lan",
+      "publisher": "NXB Trẻ",
+      "description": "Các phương pháp thực hành để giảm căng thẳng hiệu quả."
+    },
+    {
+      "id": 30,
+      "title": "Truyện cổ tích Việt Nam",
+      "priceOld": 80000,
+      "priceNew": 72000,
+      "image": "/images/truyencotichvietnam.jpeg",
+      "category": "kids",
+      "author": "Nguyễn Đình Thi",
+      "publisher": "NXB Trẻ",
+      "description": "Tuyển tập truyện cổ tích dân gian Việt Nam."
+    },
+    {
+      "id": 31,
+      "title": "Bé Học Chữ Cái",
+      "priceOld": 50000,
+      "priceNew": 38000,
+      "image": "/images/behocchucai.jpeg",
+      "category": "kids",
+      "author": "Nguyễn Thị Mai",
+      "publisher": "NXB Giáo Dục",
+      "description": "Giúp bé học chữ cái một cách dễ dàng và vui nhộn."
+    },
+    {
+      "id": 32,
+      "title": "Khám Phá Khoa Học",
+      "priceOld": 90000,
+      "priceNew": 76000,
+      "image": "/images/khamphakhoahoc.jpeg",
+      "category": "kids",
+      "author": "Phạm Minh Hùng",
+      "publisher": "NXB Trẻ",
+      "description": "Những kiến thức khoa học cơ bản dành cho thiếu nhi."
+    },
+    {
+      "id": 33,
+      "title": "English Grammar in Use",
+      "priceOld": 250000,
+      "priceNew": 215000,
+      "image": "/images/englishGrammarInUse.png",
+      "category": "foreign",
+      "author": "Raymond Murphy",
+      "publisher": "Cambridge University Press",
+      "description": "Sách ngữ pháp tiếng Anh nổi tiếng, dễ học và thực hành."
+    },
+    {
+      "id": 34,
+      "title": "600 Essential Words TOEIC",
+      "priceOld": 165000,
+      "priceNew": 135000,
+      "image": "/images/600_tu_vung_toeic.jpg",
+      "category": "foreign",
+      "author": "Barron's",
+      "publisher": "Barron's Educational Series",
+      "description": "Tuyển tập 600 từ vựng cần thiết cho kỳ thi TOEIC."
+    },
+    {
+      "id": 35,
+      "title": "Minna No Nihongo",
+      "priceOld": 200000,
+      "priceNew": 170000,
+      "image": "/images/Minna No Nihongo.jpeg",
+      "category": "foreign",
+      "author": "3A Corporation",
+      "publisher": "3A Publishing",
+      "description": "Giáo trình học tiếng Nhật căn bản và nâng cao."
+    },
+    {
+      "id": 36,
+      "title": "Giải tích 1 – Đại Học",
+      "priceOld": 120000,
+      "priceNew": 95000,
+      "image": "/images/Giaitich.jpeg",
+      "category": "textbook",
+      "author": "Nguyễn Văn Dũng",
+      "publisher": "NXB Giáo Dục",
+      "description": "Sách giáo khoa giải tích dành cho sinh viên đại học."
+    },
+    {
+      "id": 37,
+      "title": "Kỹ thuật lập trình C",
+      "priceOld": 180000,
+      "priceNew": 155000,
+      "image": "/images/Kt thuat lap trinh C.jpeg",
+      "category": "textbook",
+      "author": "Trần Quốc Toản",
+      "publisher": "NXB Giáo Dục",
+      "description": "Hướng dẫn kỹ thuật lập trình C từ cơ bản đến nâng cao."
+    },
+    {
+      "id": 38,
+      "title": "Cơ sở dữ liệu – ĐH",
+      "priceOld": 140000,
+      "priceNew": 120000,
+      "image": "/images/Co so du lieu.jpeg",
+      "category": "textbook",
+      "author": "Phạm Văn Long",
+      "publisher": "NXB Giáo Dục",
+      "description": "Giới thiệu các cơ sở dữ liệu và ứng dụng thực tế."
+    },
+    {
+      "id": 39,
+      "title": "One Piece – Tập 1",
+      "priceOld": 45000,
+      "priceNew": 40000,
+      "image": "/images/One Piece tap 1.webp",
+      "category": "comics",
+      "author": "Eiichiro Oda",
+      "publisher": "Shueisha",
+      "description": "Bắt đầu cuộc phiêu lưu hải tặc của Luffy."
+    },
+    {
+      "id": 40,
+      "title": "Doraemon – Tập 17",
+      "priceOld": 35000,
+      "priceNew": 32000,
+      "image": "/images/doraemon tap 17.jpeg",
+      "category": "comics",
+      "author": "Fujiko F. Fujio",
+      "publisher": "Shogakukan",
+      "description": "Những câu chuyện thú vị về chú mèo máy Doraemon và Nobita."
+    },
+    {
+      "id": 41,
+      "title": "Sách của Phương",
+      "author": "Phương",
+      "publisher": "Kim đồng",
+      "category": "new",
+      "priceOld": 50000,
+      "priceNew": 35000,
+      "stock": 10,
+      "description": "This book has written by DucPhuong, a book worm",
+      "image": "/images/demo3-1766415958341.png"
+    },
+    {
+      "id": 42,
+      "title": "JavaScript Cơ Bản",
+      "author": "HappyBook",
+      "publisher": "",
+      "category": "textbook",
+      "priceOld": 150000,
+      "priceNew": 120000,
+      "stock": 20,
+      "description": "Sách học JS",
+      "image": "/images/biasach.jpg"
+    }
+  ]
+}

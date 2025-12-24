@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Order</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+
+        body {
+            display:flex;
+            background: linear-gradient(to bottom right, #f0f6ff, #e8f1ff);
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width:230px;
+            background:linear-gradient(180deg,rgb(117,166,240),rgb(86,140,230));
+            height:100vh;
+            padding:20px;
+            color:white;
+            position:fixed;
+        }
+
+        .menu li {
+            list-style:none;
+            padding:12px 10px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            border-radius:8px;
+            margin-bottom:4px;
+            cursor:pointer;
+            transition:.25s;
+        }
+
+        .menu li:hover,
+        .menu li.active {
+            background:rgba(255,255,255,0.18);
+            transform:translateX(4px);
+        }
+
+        .menu li a {
+            color:#fff;
+            text-decoration:none;
+        }
+
+        /* MAIN */
+        .main {
+            margin-left:250px;
+            width: calc(100% - 250px);
+            padding:30px;
+        }
+
+        header {
+            background:#fff;
+            padding:15px 20px;
+            border-radius:12px;
+            box-shadow:0 3px 10px rgba(117,166,240,.15);
+            margin-bottom:20px;
+        }
+
+        /* TABLE */
+        table {
+            width:100%;
+            background:white;
+            border-collapse:collapse;
+            border-radius:12px;
+            overflow:hidden;
+            box-shadow:0 3px 10px rgba(117,166,240,.15);
+        }
+
+        thead {
+            background:#eef3ff;
+        }
+
+        th, td {
+            padding:14px;
+            border-bottom:1px solid #eee;
+            text-align:left;
+        }
+
+        tbody tr:hover {
+            background:#f4f7ff;
+        }
+
+        select {
+            padding:6px 8px;
+            border-radius:6px;
+        }
+
+        .btn-edit {
+            background:#ffc107;
+            border:none;
+            padding:6px 12px;
+            border-radius:6px;
+            cursor:pointer;
+        }
+
+        .btn-view {
+            background:#568ce6;
+            color:white;
+            padding:6px 12px;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div><img src="../images/logo.png" height="45px"></div>
+
+        <ul class="menu">
+            <li><i class="fa fa-chart-bar"></i><a href="../dashboard/index.html">Dashboard</a></li>
+            <li class="active"><i class="fa-solid fa-box"></i><a href="manageOrderAdmin.html">Manage Order</a></li>
+            <li><i class="fa-solid fa-book-medical"></i><a href="../FP-AddBook/addbook.html">Add Book</a></li>
+            <li><i class="fa-solid fa-warehouse"></i><a href="../ManageInventory/ManageInventory.html">Manage Inventory</a></li>
+            <li class="logout-item"><i class="fa-solid fa-right-from-bracket"></i><a href="#" id="logoutOrder">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <header>
+            <h1><i class="fa-solid fa-boxes-stacked"></i> Manage Orders</h1>
+        </header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User Email</th>
+                    <th>Date</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="orderTable"></tbody>
+        </table>
+
+    </div>
+
+<script>
+async function loadOrders() {
+    const res = await fetch("http://localhost:3000/api/admin/orders", { credentials:"include" });
+    if (res.status === 403) {
+        alert("Bạn không có quyền admin!");
+        location.href = "/login.html";
+        return;
+    }
+
+    const orders = await res.json();
+    renderOrders(orders);
+
+const logoutOrder = document.getElementById("logoutOrder");
+if (logoutOrder) {
+    logoutOrder.addEventListener("click", async (event) => {
+        event.preventDefault();
+        try {
+            const res = await fetch("/api/logout", { credentials: "include" });
+            if (!res.ok) {
+                throw new Error("Không thể đăng xuất");
+            }
+            window.location.href = "/login.html";
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+}
+}
+
+function renderOrders(orders) {
+    const tbody = document.getElementById("orderTable");
+    tbody.innerHTML = "";
+
+    orders.forEach(order => {
+        let itemsHTML = order.items
+            .map(i => `<div>${i.title} (x${i.qty})</div>`)
+            .join("");
+
+        let statusHTML = '';
+        if (order.status === 'canceled' || order.status === 'Canceled') {
+            statusHTML = `<span style="color:#d35555;font-weight:bold;">Canceled</span>`;
+        } else {
+            statusHTML = `
+                <select onchange="updateStatus('${order.id}', this.value)" ${order.status === 'canceled' ? 'disabled' : ''}>
+                    <option value="Processing" ${order.status=="Processing"?"selected":""}>Processing</option>
+                    <option value="Shipping" ${order.status=="Shipping"?"selected":""}>Shipping</option>
+                    <option value="Completed" ${order.status=="Completed"?"selected":""}>Completed</option>
+                </select>
+            `;
+        }
+
+        tbody.innerHTML += `
+            <tr>
+                <td>${order.id}</td>
+                <td>${order.email}</td>
+                <td>${order.date}</td>
+                <td>${itemsHTML}</td>
+                <td>${order.total.toLocaleString()} ₫</td>
+                <td>${statusHTML}</td>
+            </tr>
+        `;
+    });
+}
+
+async function updateStatus(orderId, newStatus) {
+    await fetch("http://localhost:3000/api/admin/orders/update", {
+        method:"POST",
+        headers: {"Content-Type":"application/json"},
+        credentials: "include",
+        body: JSON.stringify({ orderId, newStatus })
+    });
+
+    alert("Status updated!");
+    loadOrders();
+}
+
+loadOrders();
+</script>
+
+</body>
+</html>

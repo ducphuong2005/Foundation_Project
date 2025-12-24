@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Overview Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+</head>
+<style>
+  * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+body {display: flex; background: #f8f9fb; color: #333;}
+
+.sidebar {
+  width: 230px;
+  background: #fff;
+  border-right: 1px solid #eee;
+  height: 100vh;
+  position: fixed;
+  padding: 20px;
+}
+.logo {font-weight: 700; font-size: 22px; color: #ff4500; margin-bottom: 20px;}
+.menu {list-style: none;}
+.menu li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #444;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.menu li a{
+  text-decoration: none;
+  color: #fff;
+}
+.menu li.active, .menu li:hover {
+  color: #fff;
+  background: #ff4500;
+  border-radius: 8px;
+  padding-left: 10px;
+}
+.logout {margin-top: 40px; color: #d33;}
+
+.main {
+  margin-left: 230px;
+  padding: 30px;
+  width: calc(100% - 250px);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 2px solid #ff6b3d;
+  background: linear-gradient(180deg, #fff, #fff9f5);
+}
+
+
+.card .value {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.card:hover .value {
+  color: #ff4500;
+}
+
+.card small {
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.card:hover small {
+  color: #333;
+}
+
+.card .value {font-size: 26px; font-weight: 700; margin: 8px 0;}
+.green {color: #28a745;}
+.red {color: #dc3545;}
+
+.charts {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.chart-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.orders {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.orders:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.orders h3 {
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders th {
+  text-align: left;
+  padding: 12px;
+  font-size: 14px;
+  color: #666;
+  border-bottom: 2px solid #eee;
+}
+
+.orders td {
+  padding: 12px;
+  border-bottom: 1px solid #f3f3f3;
+  color: #333;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.orders tr:hover {
+  background: #fff8f2;
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.orders tr:active {
+  background: #ffe0cc;
+  transform: scale(1.015);
+}
+
+
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background: #fff7e0;
+  color: #d68910;
+}
+
+.status.completed {
+  background: #e9f9ee;
+  color: #1e8449;
+}
+
+/* Row xuất hiện mượt */
+@keyframes fadeUp {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.fade-in {
+  animation: fadeUp 0.4s ease forwards;
+}
+
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.orders th, .orders td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.status-pending {color: #ff9800;}
+.status-completed {color: #28a745;}
+.chart-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+#revenueChart {
+  width: 100%;
+  height: 320px !important;
+}
+
+.chartjs-render-monitor {
+  border-radius: 12px;
+}
+
+.chart-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+.charts {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+  align-items: stretch;
+}
+
+.chart-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chart-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  height: 300px !important;
+}
+.chart-card canvas {
+  width: 100% !important;
+  height: 340px !important; /* cao hơn 1 chút */
+}
+
+.charts {
+  align-items: stretch;
+  gap: 24px;
+}
+.charts {
+  display: grid;
+  grid-template-columns: 1.6fr 1.4fr; /* từ 2fr 1fr → tăng khung bên phải */
+  gap: 24px;
+  margin-bottom: 30px;
+  align-items: stretch;
+}
+.chart-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 380px; /* cao đều 2 chart */
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  height: 340px !important;
+}
+/* ====== Toàn trang ====== */
+body {
+  display: flex;
+  background: linear-gradient(to bottom right, #f0f6ff, #e8f1ff); /* tone nền dịu hơn */
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ====== Sidebar ====== */
+.sidebar {
+  width: 230px;
+  background: linear-gradient(180deg, rgb(117, 166, 240), rgb(86, 140, 230));
+  border-right: none;
+  height: 100vh;
+  position: fixed;
+  padding: 20px;
+  color: white;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.menu li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f0f6ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.menu li:hover,
+.menu li.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.menu li i {
+  width: 22px;
+  text-align: center;
+}
+
+/* ====== Main ====== */
+.main {
+  margin-left: 250px;
+  padding: 30px;
+  width: calc(100% - 250px);
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(117, 166, 240, 0.15);
+}
+
+/* ====== Cards ====== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  border: 2px solid transparent;
+  box-shadow: 0 3px 10px rgba(117, 166, 240, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(117, 166, 240, 0.25);
+  border-color: rgba(117, 166, 240, 0.6);
+}
+
+.card .value {
+  font-size: 28px;
+  font-weight: 700;
+  color: rgb(117, 166, 240);
+}
+
+.card small {
+  color: #666;
+}
+
+/* ====== Chart ====== */
+.chart-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(117, 166, 240, 0.15);
+  transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(117, 166, 240, 0.25);
+}
+
+.chart-card h3 {
+  color: rgb(86, 140, 230);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* ====== Table Recent Orders ====== */
+.orders {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(117, 166, 240, 0.15);
+  transition: 0.3s;
+}
+
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders th {
+  color: rgb(86, 140, 230);
+  font-weight: 600;
+  padding: 12px;
+  border-bottom: 2px solid #eef4ff;
+}
+
+.orders td {
+  padding: 12px;
+  border-bottom: 1px solid #f2f6ff;
+  transition: 0.2s;
+}
+
+.orders tr:hover {
+  background: #f0f6ff;
+  transform: scale(1.01);
+}
+
+/* Status styles */
+.status-pending {
+  color: #f4b400;
+  font-weight: 600;
+}
+
+.status-completed {
+  color: #1e8449;
+  font-weight: 600;
+}
+
+</style>
+
+<body>
+    
+  <div class="sidebar">
+    <div>
+        <img src="../images/logo.png" height="45px">
+    </div>
+    <ul class="menu">
+      <li><i class="fa fa-chart-bar"></i> <a href="../dashboard/index.html">Dashboard</a></li>
+      <li><i class="fa-solid fa-box"></i><span><a href="../ManageOrder/manageOrderAdmin.html">Manage Order</a></span></li>
+      <li><i class="fa-solid fa-book-medical"></i><span><a href="../FP-AddBook/addbook.html">Add Book</a></span></li>
+      <li><i class="fa-solid fa-warehouse"></i><span><a href="../ManageInventory/ManageInventory.html">Manage Inventory</a></span></li>
+      <li class="logout-item"><i class="fa-solid fa-right-from-bracket"></i><span><a href="#" id="logoutDashboard">Logout</a></span></li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <header>
+      <h1>Sales Overview</h1>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <label for="dateStart">From:</label>
+        <input type="date" id="dateStart">
+        <label for="dateEnd">To:</label>
+        <input type="date" id="dateEnd">
+      </div>
+    </header>
+
+    <section class="cards">
+      <div class="card">
+        <h3>Total Products</h3>
+        <p class="value" id="totalProducts">0</p>
+      </div>
+      <div class="card">
+        <h3>Total Categories</h3>
+        <p class="value" id="totalCategories">0</p>
+      </div>
+      <div class="card">
+        <h3>Total Orders</h3>
+        <p class="value" id="totalOrders">0</p>
+      </div>
+      <div class="card">
+        <h3>Total Revenue</h3>
+        <p class="value" id="totalRevenue">0 ₫</p>
+      </div>
+    </section>
+
+    <section class="charts">
+      <div class="chart-card">
+        <h3>Revenue Analytics</h3>
+        <canvas id="revenueChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Products by Category</h3>
+        <canvas id="incomeChart"></canvas>
+      </div>
+    </section>
+
+    <section class="orders">
+      <h3>Recent Orders</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="orderTable"></tbody>
+      </table>
+    </section>
+  </div>
+
+
+<!-- =============================================
+     JS TÍCH HỢP TRỰC TIẾP
+============================================= -->
+<script>
+let cachedProducts = [];
+let cachedOrders = [];
+let revenueChartInstance = null;
+let categoryChartInstance = null;
+
+/* ===========================
+    FETCH PRODUCTS
+=========================== */
+async function fetchAdminJSON(url) {
+  const res = await fetch(url, { credentials: "include" });
+
+  if (res.status === 403) {
+    alert("Bạn không có quyền admin!");
+    window.location.href = "/login.html";
+    throw new Error("Forbidden");
+  }
+
+  if (!res.ok) {
+    throw new Error(`Không thể tải dữ liệu từ ${url}`);
+  }
+
+  return res.json();
+}
+
+/* ===========================
+    RENDER DASHBOARD
+=========================== */
+async function initDashboard() {
+  try {
+    cachedProducts = await fetchAdminJSON("http://localhost:3000/api/admin/products");
+    cachedOrders = await fetchAdminJSON("http://localhost:3000/api/admin/orders");
+  } catch (error) {
+    console.error(error.message);
+    return;
+  }
+
+  const dateStart = document.getElementById("dateStart");
+  const dateEnd = document.getElementById("dateEnd");
+  if (dateStart) dateStart.addEventListener("change", applyFilterAndRender);
+  if (dateEnd) dateEnd.addEventListener("change", applyFilterAndRender);
+  applyFilterAndRender();
+}
+
+function applyFilterAndRender() {
+  const dateStart = document.getElementById("dateStart");
+  const dateEnd = document.getElementById("dateEnd");
+  const startValue = dateStart ? dateStart.value : "";
+  const endValue = dateEnd ? dateEnd.value : "";
+  const filteredOrders = filterOrdersByDateRange(cachedOrders, startValue, endValue);
+  renderDashboard(cachedProducts, filteredOrders);
+}
+
+function filterOrdersByDateRange(orders, startDate, endDate) {
+  if (!startDate && !endDate) return orders;
+  let start = startDate ? new Date(startDate) : null;
+  let end = endDate ? new Date(endDate) : null;
+  return orders.filter(order => {
+    const parsed = parseVNDateTime(order.date);
+    if (!parsed) return false;
+    if (start && parsed < start) return false;
+    if (end && parsed > end) return false;
+    return true;
+  });
+}
+
+function parseVNDateTime(value) {
+  if (!value) return null;
+
+  const [datePart = "", timePart = ""] = value.split(",").map(part => part.trim());
+  const [day, month, year] = datePart.split("/").map(Number);
+  if (!day || !month || !year) return null;
+
+  const [hour = 0, minute = 0, second = 0] = timePart.split(":").map(Number);
+  return new Date(year, month - 1, day, hour, minute, second);
+}
+
+function renderDashboard(products, orders) {
+  const totalProductsElement = document.getElementById("totalProducts");
+  const totalCategoriesElement = document.getElementById("totalCategories");
+  const totalOrdersElement = document.getElementById("totalOrders");
+  const totalRevenueElement = document.getElementById("totalRevenue");
+
+  if (totalProductsElement) totalProductsElement.innerText = products.length;
+  if (totalCategoriesElement) {
+    const uniqueCategories = new Set(products.map(p => p.category));
+    totalCategoriesElement.innerText = uniqueCategories.size;
+  }
+
+  const ordersCount = orders.length;
+  const revenue = orders.reduce((sum, order) => sum + (order.total || 0), 0);
+
+  if (totalOrdersElement) totalOrdersElement.innerText = ordersCount;
+  if (totalRevenueElement) totalRevenueElement.innerText = revenue.toLocaleString() + " ₫";
+
+  renderOrdersTable(orders);
+  renderRevenueChart(orders);
+  renderCategoryChart(products);
+}
+
+function renderOrdersTable(orders) {
+  const tbody = document.getElementById("orderTable");
+  if (!tbody) return;
+
+  tbody.innerHTML = "";
+
+  if (orders.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:16px;">Không có đơn hàng cho ngày đã chọn</td></tr>`;
+    return;
+  }
+
+  orders.slice(0, 8).forEach(order => {
+    const itemsDescription = order.items
+      .map(item => `${item.title} (x${item.qty})`)
+      .join("<br>");
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${order.id}</td>
+        <td>${order.date}</td>
+        <td>${order.email}</td>
+        <td>${itemsDescription}</td>
+        <td>${(order.total || 0).toLocaleString()} ₫</td>
+        <td>${order.status}</td>
+      </tr>
+    `;
+  });
+}
+
+function renderRevenueChart(orders) {
+  if (revenueChartInstance) {
+    revenueChartInstance.destroy();
+    revenueChartInstance = null;
+  }
+
+  if (!orders.length) {
+    return;
+  }
+
+  const ctx = document.getElementById("revenueChart");
+  if (!ctx) return;
+
+  revenueChartInstance = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: orders.map(order => order.date),
+      datasets: [{
+        label: "Revenue",
+        data: orders.map(order => order.total || 0),
+        borderWidth: 2,
+        borderColor: "#568ce6",
+        fill: false,
+        tension: 0.25
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+}
+
+function renderCategoryChart(products) {
+  if (categoryChartInstance) {
+    categoryChartInstance.destroy();
+    categoryChartInstance = null;
+  }
+
+  if (!products.length) {
+    return;
+  }
+
+  const ctx = document.getElementById("incomeChart");
+  if (!ctx) return;
+
+  const categoryCount = {};
+  products.forEach(product => {
+    const category = product.category || "Khác";
+    categoryCount[category] = (categoryCount[category] || 0) + 1;
+  });
+
+  const categories = Object.keys(categoryCount);
+
+  categoryChartInstance = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: categories,
+      datasets: [{
+        label: "Products",
+        data: Object.values(categoryCount),
+        backgroundColor: "rgba(86,140,230,0.6)",
+        borderColor: "rgba(86,140,230,1)",
+        borderWidth: 1
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, precision: 0 } }
+    }
+  });
+}
+
+initDashboard();
+
+const logoutDashboard = document.getElementById("logoutDashboard");
+if (logoutDashboard) {
+  logoutDashboard.addEventListener("click", async (event) => {
+    event.preventDefault();
+    try {
+      const res = await fetch("/api/logout", { credentials: "include" });
+      if (!res.ok) {
+        throw new Error("Không thể đăng xuất");
+      }
+      window.location.href = "/login.html";
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+}
+</script>
+
+</body>
+</html>

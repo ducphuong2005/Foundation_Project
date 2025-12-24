@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+                @media (max-width: 900px) {
+                    .form-container {
+                        max-width: 98vw;
+                        padding: 12px;
+                    }
+                    .form-row {
+                        flex-direction: column;
+                        gap: 8px;
+                    }
+                    .half, .third {
+                        max-width: 100%;
+                        width: 100%;
+                    }
+                }
+        * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+
+        body {
+            display: flex;
+            background: linear-gradient(to bottom right, #f0f6ff, #e8f1ff);
+            color: #333;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 230px;
+            background: linear-gradient(180deg, rgb(117, 166, 240), rgb(86, 140, 230));
+            height: 100vh;
+            position: fixed;
+            padding: 20px;
+            color: #fff;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu li {
+            list-style: none;
+            padding: 12px 10px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .menu li:hover,
+        .menu li.active {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 30px;
+        }
+
+        header {
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(117, 166, 240, 0.15);
+            margin-bottom: 20px;
+        }
+
+        /* FORM CARD */
+        .form-container {
+            max-width: 800px;
+            min-width: 320px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(117,166,240,0.15);
+            overflow-x: auto;
+        }
+
+        .form-title {
+            font-size: 22px;
+            color: rgb(86, 140, 230);
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #444;
+            font-size: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            min-width: 0;
+            padding: 10px 14px;
+            border: 1px solid #ccd7f1;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 15px;
+            transition: 0.25s;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: rgb(86,140,230);
+            box-shadow: 0 0 0 2px rgba(86,140,230,0.2);
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .half {
+            width: 100%;
+            max-width: 380px;
+            flex: 1 1 180px;
+        }
+        .third {
+            width: 100%;
+            max-width: 250px;
+            flex: 1 1 120px;
+        }
+
+        .btn-primary {
+            background: rgb(86, 140, 230);
+            padding: 12px 22px;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .btn-primary:hover {
+            background: rgb(60, 110, 200);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            padding: 12px 22px;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div><img src="../images/logo.png" height="50px"></div>
+
+        <ul class="menu">
+            <li><i class="fa fa-chart-bar"></i><a href="../dashboard/index.html">Dashboard</a></li>
+            <li><i class="fa-solid fa-box"></i><a href="../ManageOrder/manageOrderAdmin.html">Manage Order</a></li>
+            <li class="active"><i class="fa-solid fa-book-medical"></i><a href="addbook.html">Add Book</a></li>
+            <li><i class="fa-solid fa-warehouse"></i><a href="../ManageInventory/ManageInventory.html">Manage Inventory</a></li>
+            <li class="logout-item"><i class="fa-solid fa-right-from-bracket"></i><a href="#" id="logoutAddBook">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <header><h1>Add Book</h1></header>
+
+        <div class="form-container">
+
+            <h2 class="form-title">Add New Book</h2>
+
+            <form id="addBookForm">
+
+                <label>Book Title *</label>
+                <input type="text" id="book_title" required>
+
+                <div class="form-row">
+                    <div class="half">
+                        <label>Author *</label>
+                        <input type="text" id="author" required>
+                    </div>
+                    <div class="half">
+                        <label>Publisher</label>
+                        <input type="text" id="publisher">
+                    </div>
+                </div>
+
+                <label>Category *</label>
+                <select id="category" required>
+                    <option value="">-- Select Category --</option>
+                    <option value="literature">Literature</option>
+                    <option value="economy">Economy</option>
+                    <option value="psychology">Psychology</option>
+                    <option value="kids">Children</option>
+                    <option value="foreign">Foreign</option>
+                </select>
+
+                <div class="form-row">
+                    <div class="third">
+                        <label>Original Price *</label>
+                        <input type="number" id="priceOld" required>
+                    </div>
+                    <div class="third">
+                        <label>Discount (%)</label>
+                        <input type="number" id="discount" value="0">
+                    </div>
+                    <div class="third">
+                        <label>Stock *</label>
+                        <input type="number" id="stock" required>
+                    </div>
+                </div>
+
+                <label>Cover Image</label>
+                <input type="file" id="cover_image" accept="image/*">
+                <small style="display:block;margin-top:-10px;margin-bottom:12px;color:#666;font-size:13px;">Tối đa 5MB. Nếu bỏ trống hệ thống dùng ảnh mặc định.</small>
+                <img id="cover_preview" alt="Preview" style="display:none;width:120px;height:150px;object-fit:cover;border-radius:8px;border:1px solid #ccd7f1;margin-bottom:18px;">
+
+                <label>Description</label>
+                <textarea id="description" rows="4"></textarea>
+
+                <div class="form-actions">
+                    <button class="btn-secondary" type="reset">Reset</button>
+                    <button class="btn-primary" type="submit"><i class="fa-solid fa-save"></i> Save Book</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+<script>
+const addBookForm = document.getElementById("addBookForm");
+const bookTitleInput = document.getElementById("book_title");
+const authorInput = document.getElementById("author");
+const publisherInput = document.getElementById("publisher");
+const categoryInput = document.getElementById("category");
+const priceOldInput = document.getElementById("priceOld");
+const discountInput = document.getElementById("discount");
+const stockInput = document.getElementById("stock");
+const descriptionInput = document.getElementById("description");
+const coverImageInput = document.getElementById("cover_image");
+const coverPreview = document.getElementById("cover_preview");
+
+if (coverImageInput) {
+    coverImageInput.addEventListener("change", () => {
+        const file = coverImageInput.files[0];
+        if (!file) {
+            coverPreview.style.display = "none";
+            coverPreview.removeAttribute("src");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            coverPreview.src = event.target.result;
+            coverPreview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+async function uploadCoverImage(file) {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const res = await fetch("/api/admin/upload-image", {
+        method: "POST",
+        credentials: "include",
+        body: formData
+    });
+
+    if (res.status === 403) {
+        window.location.href = "/login.html";
+        throw new Error("Không có quyền admin");
+    }
+
+    const payload = await res.json().catch(() => ({}));
+
+    if (!res.ok || !payload.success) {
+        const message = payload.message || "Tải ảnh thất bại";
+        throw new Error(message);
+    }
+
+    return payload.fileName;
+}
+
+addBookForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const title = bookTitleInput.value.trim();
+    const author = authorInput.value.trim();
+    const category = categoryInput.value;
+
+    if (!title || !author || !category) {
+        alert("Vui lòng điền đầy đủ thông tin bắt buộc");
+        return;
+    }
+
+    const priceOldValue = Number(priceOldInput.value);
+    const discountValue = Number(discountInput.value || 0);
+    const stockValue = Number(stockInput.value);
+
+    if (Number.isNaN(priceOldValue) || Number.isNaN(stockValue)) {
+        alert("Giá và số lượng phải là số hợp lệ");
+        return;
+    }
+
+    const priceNewValue = Math.max(0, Math.round(priceOldValue - (priceOldValue * discountValue / 100)));
+
+    if (priceOldValue < 0 || stockValue < 0) {
+        alert("Giá và số lượng không được âm");
+        return;
+    }
+
+    let imageFileName = "biasach.jpg";
+    if (coverImageInput && coverImageInput.files && coverImageInput.files[0]) {
+        try {
+            imageFileName = await uploadCoverImage(coverImageInput.files[0]);
+        } catch (error) {
+            alert(error.message);
+            return;
+        }
+    }
+
+    const data = {
+        title,
+        author,
+        publisher: publisherInput.value.trim(),
+        category,
+        priceOld: priceOldValue || priceNewValue,
+        priceNew: priceNewValue,
+        stock: stockValue,
+        description: descriptionInput.value.trim(),
+        image: imageFileName
+    };
+
+    try {
+        const res = await fetch("http://localhost:3000/api/admin/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify(data)
+        });
+
+        if (res.status === 403) {
+            alert("Bạn không có quyền admin!");
+            window.location.href = "/login.html";
+            return;
+        }
+
+        const payload = await res.json().catch(() => ({}));
+
+        if (!res.ok || !payload.success) {
+            const message = payload.message || "Không thể thêm sách mới";
+            throw new Error(message);
+        }
+
+        if (payload.success) {
+            alert("Book added successfully!");
+            window.location.href = "../ManageInventory/ManageInventory.html";
+        }
+    } catch (error) {
+        alert(error.message);
+    }
+});
+
+const logoutAddBook = document.getElementById("logoutAddBook");
+if (logoutAddBook) {
+    logoutAddBook.addEventListener("click", async (event) => {
+        event.preventDefault();
+        try {
+            const res = await fetch("/api/logout", { credentials: "include" });
+            if (!res.ok) {
+                throw new Error("Không thể đăng xuất");
+            }
+            window.location.href = "/login.html";
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+}
+</script>
+
+</body>
+</html>

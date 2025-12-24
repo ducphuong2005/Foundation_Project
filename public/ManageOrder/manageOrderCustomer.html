@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .order-list { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 32px; }
+        .order-list h2 { margin-bottom: 24px; }
+        .order-item { border-bottom: 1px solid #eee; padding: 18px 0; }
+        .order-item:last-child { border-bottom: none; }
+        .order-header { display: flex; justify-content: space-between; align-items: center; }
+        .order-id { font-weight: bold; color: #d35555; }
+        .order-status { font-weight: bold; }
+        .order-actions button { padding: 6px 18px; border-radius: 5px; border: none; background: #ff6b6b; color: #fff; cursor: pointer; margin-left: 12px; }
+        .order-actions button:disabled { background: #ccc; cursor: not-allowed; }
+        .order-items { margin: 10px 0 0 0; }
+        .order-items li { margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+    <div class="order-list">
+        <h2>My Orders</h2>
+        <div id="orders"></div>
+    </div>
+    <script>
+    async function fetchOrders() {
+        const res = await fetch('/api/customer/orders');
+        const data = await res.json();
+        renderOrders(data.orders || []);
+    }
+    function renderOrders(orders) {
+        const box = document.getElementById('orders');
+        if (orders.length === 0) {
+            box.innerHTML = '<p style="text-align:center;color:#888;">No orders found.</p>';
+            return;
+        }
+        box.innerHTML = '';
+        orders.forEach(order => {
+            // Status translation
+            const statusMap = {
+                'Đang xử lý': 'Processing',
+                'Shipping': 'Shipping',
+                'Completed': 'Completed',
+                'canceled': 'Canceled',
+                'Canceled': 'Canceled'
+            };
+            const statusEn = statusMap[order.status] || order.status;
+            box.innerHTML += `
+            <div class="order-item">
+                <div class="order-header">
+                    <span class="order-id">Order #${order.id}</span>
+                    <span class="order-status">Status: ${statusEn}</span>
+                    <span>${order.date}</span>
+                    <div class="order-actions">
+                        <button onclick="cancelOrder('${order.id}')" ${statusEn === 'Shipping' || statusEn === 'Canceled' ? 'disabled' : ''}>Cancel</button>
+                    </div>
+                </div>
+                <ul class="order-items">
+                    ${order.items.map(item => `<li>${item.title ? item.title : 'Sản phẩm'} x${item.qty} - ${(item.price !== undefined ? item.price.toLocaleString() : '?')}₫</li>`).join('')}
+                </ul>
+                <div style="margin-top:8px;font-weight:bold;">Total: ${order.total !== undefined ? order.total.toLocaleString() : '?'}₫</div>
+            </div>
+            `;
+        });
+    }
+    async function cancelOrder(orderId) {
+        if (!confirm('Are you sure you want to cancel this order?')) return;
+        const res = await fetch('/api/customer/orders/cancel', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orderId })
+        });
+        const data = await res.json();
+        if (data.success) {
+            alert('Order canceled successfully!');
+            fetchOrders();
+        } else {
+            alert(data.message || 'Cancel failed.');
+        }
+    }
+    fetchOrders();
+    </script>
+</body>
+</html>
